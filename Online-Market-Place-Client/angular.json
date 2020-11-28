@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Online-Market-Place-Client"
+    }
+  },
+  "defaultProject": "Online-Market-Place-Client",
+  "cli": {
+    "analytics": "a7854c6a-a506-4487-b0e2-82b3c528dc03"
+  }
 }

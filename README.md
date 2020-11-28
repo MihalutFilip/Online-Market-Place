@@ -1,6 +1,6 @@
-# Online-Market-Place-Server - .NET Project
+## Online-Market-Place-Server - .NET Project
 
-# Online-Market-Place-Client - Angular Project
+## Online-Market-Place-Client - Angular Project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.4.
 

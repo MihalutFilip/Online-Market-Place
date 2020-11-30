@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using OnlineMarketPlace.Application;
 using OnlineMarketPlace.Application.Interfaces;
+using OnlineMarketPlace.Infrastructure;
 using OnlineMarketPlace.WebApi.Helpers;
 using WebApi.Models;
 
@@ -41,6 +43,7 @@ namespace WebApi
             // configure DI for application services
             services.AddScoped<IAuthorizeService, AuthorizeService>();
 
+            services.AddDbContext<MarketPlaceContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MarketPlace")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

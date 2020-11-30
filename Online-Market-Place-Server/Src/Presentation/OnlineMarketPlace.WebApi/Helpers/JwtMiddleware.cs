@@ -26,8 +26,7 @@ namespace OnlineMarketPlace.WebApi.Helpers
 
         public async Task Invoke(HttpContext context, IAuthorizeService autheticateService)
         {
-            //var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-            var token = "asdas";
+            var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
             if (token != null)
                 AttachUserToContext(context, autheticateService, token);

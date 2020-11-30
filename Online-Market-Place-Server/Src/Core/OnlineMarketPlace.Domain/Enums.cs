@@ -10,4 +10,11 @@ namespace OnlineMarketPlace.Domain
         Provider,
         Client
     }
+
+    public enum DataType
+    {
+        String,
+        Integer,
+        Boolean
+    }
 }

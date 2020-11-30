@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\OnlineMarketPlace.Infrastructure\OnlineMarketPlace.Infrastructure.csproj" />
     <ProjectReference Include="..\OnlineMarketPlace.Domain\OnlineMarketPlace.Domain.csproj" />
   </ItemGroup>
 

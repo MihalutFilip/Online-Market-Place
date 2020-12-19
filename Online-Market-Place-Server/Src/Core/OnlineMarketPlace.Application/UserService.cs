@@ -1,8 +1,11 @@
-﻿using OnlineMarketPlace.Application.Interfaces;
+﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using OnlineMarketPlace.Application.Helpers;
+using OnlineMarketPlace.Application.Interfaces;
 using OnlineMarketPlace.Domain;
 using OnlineMarketPlace.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace OnlineMarketPlace.Application
@@ -33,6 +36,7 @@ namespace OnlineMarketPlace.Application
 
         public void Insert(User user)
         {
+            user.Password = PasswordHasher.Instance.Hash(user.Password);
             _userRepository.Insert(user);
         }
 
@@ -40,5 +44,6 @@ namespace OnlineMarketPlace.Application
         {
             _userRepository.Update(user);
         }
+
     }
 }

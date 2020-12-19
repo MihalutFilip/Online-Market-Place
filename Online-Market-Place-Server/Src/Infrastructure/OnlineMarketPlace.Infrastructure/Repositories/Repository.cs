@@ -32,12 +32,14 @@ namespace OnlineMarketPlace.Infrastructure.Repositories
             if (entity == null) throw new ArgumentNullException("Null entity");
 
             _table.Add(entity);
+            _context.SaveChanges();
         }
         public void Update(T entity)
         {
             if (entity == null) throw new ArgumentNullException("Null entity");
             _table.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
+            _context.SaveChanges();
         }
         public void Delete(int id)
         {
@@ -45,6 +47,7 @@ namespace OnlineMarketPlace.Infrastructure.Repositories
 
             T entity = _table.SingleOrDefault(s => s.Id == id);
             _table.Remove(entity);
+            _context.SaveChanges();
         }
     }
 }

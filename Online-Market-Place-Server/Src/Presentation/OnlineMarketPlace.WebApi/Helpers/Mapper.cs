@@ -11,10 +11,6 @@ namespace OnlineMarketPlace.WebApi.Helpers
     {
         private static readonly Mapper instance = new Mapper();
 
-        static Mapper()
-        {
-        }
-
         private Mapper()
         {
         }
@@ -36,6 +32,17 @@ namespace OnlineMarketPlace.WebApi.Helpers
                 Role = user.Role,
                 Username = user.Username,
                 JwtToken = jwtToken
+            };
+        }
+
+        public User ToUser(UserViewModel user)
+        {
+            return new User()
+            {
+                Email = user.Email,
+                Role = user.Role,
+                Username = user.Username,
+                Password = user.Password
             };
         }
     }

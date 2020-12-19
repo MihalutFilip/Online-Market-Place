@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using OnlineMarketPlace.Application.Helpers;
 using OnlineMarketPlace.Application.Interfaces;
 using OnlineMarketPlace.Domain;
 using OnlineMarketPlace.Infrastructure.Interfaces;
@@ -20,8 +21,9 @@ namespace OnlineMarketPlace.Application
 
         public User Authenticate(string email, string password)
         {
-            var user = _userRepository.GetByEmail(email); 
-            return user;
+            var user = _userRepository.GetByEmail(email);
+            var x = PasswordHasher.Instance.Check(user.Password, password);
+            return x ? user : null;
         }
 
         public string GenerateJwtToken(User user, string secretKey)

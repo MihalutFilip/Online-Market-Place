@@ -17,6 +17,8 @@ using Microsoft.IdentityModel.Tokens;
 using OnlineMarketPlace.Application;
 using OnlineMarketPlace.Application.Interfaces;
 using OnlineMarketPlace.Infrastructure;
+using OnlineMarketPlace.Infrastructure.Interfaces;
+using OnlineMarketPlace.Infrastructure.Repositories;
 using OnlineMarketPlace.WebApi.Helpers;
 using WebApi.Models;
 
@@ -41,9 +43,12 @@ namespace WebApi
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
             // configure DI for application services
-            services.AddScoped<IAuthorizeService, AuthorizeService>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
-            services.AddDbContext<MarketPlaceContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MarketPlace")));
+            services.AddScoped<IAuthorizeService, AuthorizeService>();
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddDbContext<MarketPlaceContext>(options => options.UseSqlServer("Data Source=.;Initial Catalog=MarketPlace;Integrated Security=True"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

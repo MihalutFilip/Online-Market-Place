@@ -6,10 +6,8 @@ using System.Text;
 
 namespace OnlineMarketPlace.Domain
 {
-    public class ObjectType
+    public class ObjectType : Entity
     {
-        [Key]
-        public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<ObjectForSale> ObjectsForSale { get; set; }
         public ICollection<AttributeType> AttributeTypes { get; set; }

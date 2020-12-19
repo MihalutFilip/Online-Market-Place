@@ -5,9 +5,8 @@ using System.Text;
 
 namespace OnlineMarketPlace.Domain
 {
-    public class ObjectForSale
+    public class ObjectForSale : Entity
     {
-        public int Id { get; set; }
         public decimal Price { get; set; }
 
         public User User { get; set; }

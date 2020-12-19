@@ -36,27 +36,13 @@ namespace WebApi.Controllers
         public IActionResult Authenticate([FromBody] AuthorizeRequest model)
         {
             var user = _authorizeService.Authenticate(model.Email, model.Password);
-            var response = Mapper.Instance.ToUserViewModel(user, GenerateJwtToken(user));
 
-            if (response == null)
+            if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
+            var jwtToken = _authorizeService.GenerateJwtToken(user, _appSettings.Key);
+            var response = Mapper.Instance.ToUserViewModel(user, jwtToken);
             return Ok(response);
-        }
-
-        private string GenerateJwtToken(User user)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-
-            var key = Encoding.ASCII.GetBytes(_appSettings.Key);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
         }
     }
 }

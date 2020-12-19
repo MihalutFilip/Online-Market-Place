@@ -24,17 +24,17 @@ namespace OnlineMarketPlace.WebApi.Helpers
             _appSettings = appSettings.Value;
         }
 
-        public async Task Invoke(HttpContext context, IAuthorizeService autheticateService)
+        public async Task Invoke(HttpContext context, IAuthorizeService autheticateService, IUserService userService)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
             if (token != null)
-                AttachUserToContext(context, autheticateService, token);
+                AttachUserToContext(context, autheticateService, userService, token);
 
             await _next(context);
         }
 
-        private void AttachUserToContext(HttpContext context, IAuthorizeService autheticateService, string token)
+        private void AttachUserToContext(HttpContext context, IAuthorizeService autheticateService, IUserService userService, string token)
         {
             try
             {
@@ -55,8 +55,7 @@ namespace OnlineMarketPlace.WebApi.Helpers
 
                 // attach user to context on successful jwt validation
                 // To DO: Get user from service
-                context.Items["User"] = new User() { Id = 1};
-                    //userService.GetById(userId);
+                context.Items["User"] = userService.GetById(userId);
             }
             catch(Exception e)
             {

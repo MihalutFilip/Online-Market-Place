@@ -6,10 +6,8 @@ using System.Text;
 
 namespace OnlineMarketPlace.Domain
 {
-    public class AttributeType
+    public class AttributeType : Entity
     {
-        [Key]
-        public int Id { get; set; }
         public string Name { get; set; }
         public DataType DataType { get; set; }
 

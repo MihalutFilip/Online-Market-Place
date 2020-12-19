@@ -5,9 +5,8 @@ using System.Text;
 
 namespace OnlineMarketPlace.Domain
 {
-    public class AttributeValue
+    public class AttributeValue : Entity
     {
-        public int Id { get; set; }
         public int Value { get; set; }
 
         public AttributeType AttributeType { get; set; }

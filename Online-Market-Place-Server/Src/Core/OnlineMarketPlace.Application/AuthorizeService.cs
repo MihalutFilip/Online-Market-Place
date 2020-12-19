@@ -22,8 +22,7 @@ namespace OnlineMarketPlace.Application
         public User Authenticate(string email, string password)
         {
             var user = _userRepository.GetByEmail(email);
-            var x = PasswordHasher.Instance.Check(user.Password, password);
-            return x ? user : null;
+            return PasswordHasher.Instance.Check(user.Password, password) ? user : null;
         }
 
         public string GenerateJwtToken(User user, string secretKey)

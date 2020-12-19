@@ -7,6 +7,7 @@ namespace OnlineMarketPlace.Domain
 {
     public class ObjectForSale : Entity
     {
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
         public User User { get; set; }

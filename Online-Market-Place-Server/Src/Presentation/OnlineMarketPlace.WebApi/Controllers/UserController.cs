@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineMarketPlace.Application.Interfaces;
+using OnlineMarketPlace.Domain;
 using OnlineMarketPlace.WebApi.Helpers;
 using OnlineMarketPlace.WebApi.Models;
 using System;
@@ -20,8 +21,19 @@ namespace OnlineMarketPlace.WebApi.Controllers
             _userService = userService;
         }
 
+        [HttpGet]
+        [Authorize(new[] { Role.Admin })]
+        public IActionResult GetAll()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var users = _userService.GetAll().Select(user => Mapper.Instance.ToUserViewModel(user));
+            return Ok(users);
+        }
+
         [HttpPost]
-        //[Authorize]
+        [Authorize(new[] { Role.Admin })]
         public IActionResult Post([FromBody] UserViewModel userViewModel)
         {
             if (!ModelState.IsValid)

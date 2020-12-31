@@ -35,6 +35,17 @@ namespace OnlineMarketPlace.WebApi.Helpers
             };
         }
 
+        public UserViewModel ToUserViewModel(User user)
+        {
+            return new UserViewModel()
+            {
+                Id = user.Id,
+                Email = user.Email,
+                Role = user.Role,
+                Username = user.Username
+            };
+        }
+
         public User ToUser(UserViewModel user)
         {
             return new User()

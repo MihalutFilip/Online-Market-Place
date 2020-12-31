@@ -15,8 +15,4 @@ export class AuthorizeService {
   public authorizeUser(authRequest) {
     return this.httpClient.post<User>(`${this.baseApiUrl}`, authRequest, { headers: this.headers });
   }
-
-  public get() {
-    return this.httpClient.get(`${this.baseApiUrl}`);
-  }
 }

@@ -8,10 +8,9 @@ import { AuthorizeService } from 'src/app/services/authorize.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private authorizeService: AuthorizeService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.authorizeService.get().subscribe(s => console.log(s));
   }
 
 }

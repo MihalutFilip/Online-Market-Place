@@ -21,7 +21,7 @@ export class UsersComponent implements OnInit {
   public displayedColumns: string[] = ['username', 'email', 'role', 'edit'];
   public Role = Role;
 
-  constructor(private usersService: UsersService, private snackBar : MatSnackBar,
+  constructor(private usersService: UsersService, private snackBar: MatSnackBar,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -32,43 +32,46 @@ export class UsersComponent implements OnInit {
   }
 
   onFilterChanged() {
-    this.dataSource = new MatTableDataSource(this.users.filter(user => user.username.includes(this.filterSearch)));
+    this.dataSource = new MatTableDataSource(this.users.filter(user => user.username.includes(this.filterSearch) ||
+      user.email.includes(this.filterSearch) ||
+      Role[user.role].includes(this.filterSearch)));
   }
 
   editUser(user: User) {
-    // let dialogRef = this.dialog.open(UserModal, {
-    //   data: {
-    //     user: {...user}
-    //   }
-    // });
+    let dialogRef = this.dialog.open(UserModal, {
+      data: {
+        user: { ...user }
+      }
+    });
 
-    // dialogRef.afterClosed().subscribe(user => {
-    //   if(user) {
-    //     this.usersService.update(user).subscribe(_ => {
-    //       var indexOfUser = this.users.indexOf(this.users.find(d => d.id == user.id));
-    //       this.users[indexOfUser] = user;
-    //       this.dataSource = new MatTableDataSource(this.users);
-    //       this.snackBar.open("The user was updated", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
-    //     });
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe(user => {
+      if (user) {
+        this.usersService.updateUser(user).subscribe(_ => {
+          var indexOfUser = this.users.indexOf(this.users.find(d => d.id == user.id));
+          this.users[indexOfUser] = user;
+          this.dataSource = new MatTableDataSource(this.users);
+          this.snackBar.open("The user was updated", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
+        });
+      }
+    });
   }
 
   saveUser() {
 
     let dialogRef = this.dialog.open(UserModal, {
       data: {
-        user: <User> {}
+        user: <User>{}
       }
     });
 
     dialogRef.afterClosed().subscribe(user => {
-      this.usersService.saveUser(user).subscribe(savedUser => {
-
-        // this.users.push(savedUser);
-        // this.dataSource = new MatTableDataSource(this.users);
-        this.snackBar.open("The user was saved", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
-      });
+      if (user) {
+        this.usersService.saveUser(user).subscribe(savedUser => {
+          this.users.push(savedUser);
+          this.dataSource = new MatTableDataSource(this.users);
+          this.snackBar.open("The user was saved", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
+        });
+      }
     }
     );
   }

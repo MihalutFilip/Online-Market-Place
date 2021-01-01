@@ -38,15 +38,16 @@ namespace OnlineMarketPlace.Application
             return _userRepository.GetById(id);
         }
 
-        public void Insert(User user)
+        public User Insert(User user)
         {
             user.Password = PasswordHasher.Instance.Hash(user.Password);
-            _userRepository.Insert(user);
+            return _userRepository.Insert(user);
         }
 
-        public void Update(User user)
+        public User Update(User user)
         {
-            _userRepository.Update(user);
+            user.Password = _userRepository.GetById(user.Id).Password;
+            return _userRepository.Update(user);
         }
 
         public string GeneratePassword()

@@ -1,12 +1,43 @@
 <!-- Toolbar -->
-<div *ngIf="isLoggedIn" class="toolbar" role="banner">
+<p>
+  <mat-toolbar *ngIf="loggedUser" color="primary">
+    <mat-menu #profileMenu="matMenu" xPosition="before">
+      <div class="profile-menu-topbar">
+        <div class="icon-profile-menu-topbar">{{loggedUser.username | initials}}</div>
+        <div class="info-profile-menu-topbar">
+          <div class="display-name-profile-menu-topbar">{{loggedUser.username}}</div>
+          <span class="mat-caption">{{loggedUser.email}}</span>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <button (click)="goToUserPage()" mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>Manage users</span>
+      </button>
+      <button (click)="logOut()" mat-menu-item>
+        <mat-icon>standby</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+    <button [matMenuTriggerFor]="profileMenu" one-icon-button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+      
+    </button> -->
+    <span>Online Market Place</span>
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+</p>
+<!-- <div *ngIf="isLoggedIn" class="toolbar" role="banner">
   <img
     width="40"
     alt="Angular Logo"
     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
   />
   <a href="users" >Users</a>
-</div>
+</div> -->
 <div class="main-container">
   <router-outlet></router-outlet>
 </div>

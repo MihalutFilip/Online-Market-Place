@@ -22,6 +22,6 @@
         </mat-form-field>
     </p>
 </form>
-<button mat-flat-button [disabled]="!user.username || !user.email || !user.role" [mat-dialog-close]="user" color="primary">
+<button mat-flat-button [disabled]="!user.username || !user.email || user.role == null || user.role == undefined" [mat-dialog-close]="user" color="primary">
     Save
 </button>

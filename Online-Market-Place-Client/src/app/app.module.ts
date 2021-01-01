@@ -28,6 +28,9 @@ import { DeleteConfirmationModal } from './modals/delete-confirmation/delete-con
 import { MatIconModule } from '@angular/material/icon';  
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserModal } from './modals/user-modal/user-modal';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { LoginCommunicationService } from './services/communcation-services/login-communication.service';
+import { InitialsPipe } from './pipes/initials.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { UserModal } from './modals/user-modal/user-modal';
     HomeComponent,
     UsersComponent,
     DeleteConfirmationModal,
-    UserModal
+    UserModal,
+    InitialsPipe
   ],
   imports: [
     BrowserModule,
@@ -56,14 +60,17 @@ import { UserModal } from './modals/user-modal/user-modal';
     MatRadioModule,
     ReactiveFormsModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule
+
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS, useClass: HttpAuthInterceptor, multi: true},
     AuthGuard,
     LoginGuard,
     StorageService,
-    AuthorizeService
+    AuthorizeService,
+    LoginCommunicationService
   ],
   entryComponents: [
     DeleteConfirmationModal,

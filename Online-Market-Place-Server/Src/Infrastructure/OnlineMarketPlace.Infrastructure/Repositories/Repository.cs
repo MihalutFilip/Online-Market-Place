@@ -27,19 +27,24 @@ namespace OnlineMarketPlace.Infrastructure.Repositories
         {
             return _table.SingleOrDefault(s => s.Id == id);
         }
-        public void Insert(T entity)
+        public T Insert(T entity)
         {
             if (entity == null) throw new ArgumentNullException("Null entity");
 
             _table.Add(entity);
             _context.SaveChanges();
+
+            return entity;
         }
-        public void Update(T entity)
+        public T Update(T entity)
         {
             if (entity == null) throw new ArgumentNullException("Null entity");
+
             _table.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
             _context.SaveChanges();
+
+            return entity;
         }
         public void Delete(int id)
         {

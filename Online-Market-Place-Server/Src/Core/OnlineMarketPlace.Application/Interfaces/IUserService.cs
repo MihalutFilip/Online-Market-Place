@@ -10,8 +10,8 @@ namespace OnlineMarketPlace.Application.Interfaces
     {
         IEnumerable<User> GetAll();
         User GetById(int id);
-        void Insert(User user);
-        void Update(User user);
+        User Insert(User user);
+        User Update(User user);
         void Delete(int id);
         string GeneratePassword();
         void SendEmailWithPassword(User user, SendEmailSettings settings);

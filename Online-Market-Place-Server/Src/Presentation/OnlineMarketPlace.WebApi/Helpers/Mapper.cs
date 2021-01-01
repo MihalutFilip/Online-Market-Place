@@ -50,6 +50,7 @@ namespace OnlineMarketPlace.WebApi.Helpers
         {
             return new User()
             {
+                Id = user.Id,
                 Email = user.Email,
                 Role = user.Role,
                 Username = user.Username

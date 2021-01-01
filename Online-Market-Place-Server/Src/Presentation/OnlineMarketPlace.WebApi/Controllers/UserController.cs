@@ -43,11 +43,18 @@ namespace OnlineMarketPlace.WebApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var user = Mapper.Instance.ToUser(userViewModel);
-            user.Password = _userService.GeneratePassword();
-            _userService.SendEmailWithPassword(user, _appSettings.SendEmailSettings);
-            _userService.Insert(user);
-            return Ok();
+            try
+            {
+                var user = Mapper.Instance.ToUser(userViewModel);
+                user.Password = _userService.GeneratePassword();
+                _userService.SendEmailWithPassword(user, _appSettings.SendEmailSettings);
+                var savedUser = _userService.Insert(user);
+                return Ok(Mapper.Instance.ToUserViewModel(savedUser));
+            } 
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPut]
@@ -57,9 +64,16 @@ namespace OnlineMarketPlace.WebApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var user = Mapper.Instance.ToUser(userViewModel);
-            _userService.Update(user);
-            return Ok();
+            try
+            {
+                var user = Mapper.Instance.ToUser(userViewModel);
+                var updatedUser = _userService.Update(user);
+                return Ok(Mapper.Instance.ToUserViewModel(updatedUser));
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

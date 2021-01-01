@@ -38,7 +38,7 @@ namespace WebApi.Controllers
             var user = _authorizeService.Authenticate(model.Email, model.Password);
 
             if (user == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
+                return BadRequest("Username or password is incorrect");
 
             var jwtToken = _authorizeService.GenerateJwtToken(user, _appSettings.Key);
             var response = Mapper.Instance.ToUserViewModel(user, jwtToken);

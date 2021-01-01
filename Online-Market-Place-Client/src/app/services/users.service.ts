@@ -20,4 +20,8 @@ export class UsersService {
   public saveUser(user: User): Observable<any> {
     return this.httpClient.post<any>(`${this.baseApiUrl}`, user, { headers: this.headers });
   }
+
+  public updateUser(user: User): Observable<any> {
+    return this.httpClient.put<any>(`${this.baseApiUrl}`, user, { headers: this.headers });
+  }
 }

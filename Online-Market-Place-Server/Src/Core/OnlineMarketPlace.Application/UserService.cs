@@ -7,6 +7,10 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using MailKit.Net.Smtp;
+using MimeKit;
+using OnlineMarketPlace.Domain.Entities;
+using System.Linq;
 
 namespace OnlineMarketPlace.Application
 {
@@ -45,5 +49,35 @@ namespace OnlineMarketPlace.Application
             _userRepository.Update(user);
         }
 
+        public string GeneratePassword()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const int length = 20;
+            Random random = new Random();
+
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        public void SendEmailWithPassword(User user, SendEmailSettings settings)
+        {
+            var message = new MimeMessage();
+            BodyBuilder bodyBuilder = new BodyBuilder();
+
+            bodyBuilder.TextBody = "Hello " + user.Username + ", this is your password account: " + user.Password;
+            message.From.Add(MailboxAddress.Parse(settings.Email));
+            message.To.Add(MailboxAddress.Parse(user.Email));
+            message.Subject = "Password account";
+            message.Body = bodyBuilder.ToMessageBody();
+
+            using (SmtpClient smtpClient = new SmtpClient())
+            {
+                smtpClient.Connect(settings.SmtpServer, settings.Port, true);
+                smtpClient.AuthenticationMechanisms.Remove("XOAUTH2");
+                smtpClient.Authenticate(settings.Email, settings.Password);
+                smtpClient.Send(message);
+                smtpClient.Disconnect(true);
+            }
+        }
     }
 }

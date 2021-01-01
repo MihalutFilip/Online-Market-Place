@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { Role } from 'src/app/enums/role';
 import { DeleteConfirmationModal } from 'src/app/modals/delete-confirmation/delete-confirmation';
+import { UserModal } from 'src/app/modals/user-modal/user-modal';
 import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users.service';
+import { Constants } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-users',
@@ -16,7 +19,7 @@ export class UsersComponent implements OnInit {
   public users: User[] = [];
   public filterSearch: string;
   public displayedColumns: string[] = ['username', 'email', 'role', 'edit'];
-
+  public Role = Role;
 
   constructor(private usersService: UsersService, private snackBar : MatSnackBar,
     public dialog: MatDialog) { }
@@ -30,20 +33,6 @@ export class UsersComponent implements OnInit {
 
   onFilterChanged() {
     this.dataSource = new MatTableDataSource(this.users.filter(user => user.username.includes(this.filterSearch)));
-  }
-
-  deleteUser(user) {
-    let dialogRef = this.dialog.open(DeleteConfirmationModal);
-
-    // dialogRef.afterClosed().subscribe(response => {
-    //   if(response) {
-    //     this.usersService.delete(user.id).subscribe(_ => {
-    //       this.users = this.users.filter(d => d.id != user.id);
-    //       this.dataSource = new MatTableDataSource(this.users);
-    //       this.snackBar.open("The user was deleted", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
-    //     })
-    //   }
-    // });
   }
 
   editUser(user: User) {
@@ -67,20 +56,21 @@ export class UsersComponent implements OnInit {
 
   saveUser() {
 
-    // let dialogRef = this.dialog.open(UserModal, {
-    //   data: {
-    //     user: new User()
-    //   }
-    // });
+    let dialogRef = this.dialog.open(UserModal, {
+      data: {
+        user: <User> {}
+      }
+    });
 
-    // dialogRef.afterClosed().subscribe(user => {
-    //   this.usersService.save(user).subscribe(savedUser => {
-    //     this.users.push(savedUser);
-    //     this.dataSource = new MatTableDataSource(this.users);
-    //     this.snackBar.open("The user was updated", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
-    //   });
-    // }
-    // );
+    dialogRef.afterClosed().subscribe(user => {
+      this.usersService.saveUser(user).subscribe(savedUser => {
+
+        // this.users.push(savedUser);
+        // this.dataSource = new MatTableDataSource(this.users);
+        this.snackBar.open("The user was saved", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
+      });
+    }
+    );
   }
 
 }

@@ -25,13 +25,18 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatRadioModule } from "@angular/material/radio";
 import { DeleteConfirmationModal } from './modals/delete-confirmation/delete-confirmation';
+import { MatIconModule } from '@angular/material/icon';  
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserModal } from './modals/user-modal/user-modal';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    UsersComponent
+    UsersComponent,
+    DeleteConfirmationModal,
+    UserModal
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,9 @@ import { DeleteConfirmationModal } from './modals/delete-confirmation/delete-con
     MatSelectModule,
     MatOptionModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS, useClass: HttpAuthInterceptor, multi: true},
@@ -59,7 +66,8 @@ import { DeleteConfirmationModal } from './modals/delete-confirmation/delete-con
     AuthorizeService
   ],
   entryComponents: [
-    DeleteConfirmationModal
+    DeleteConfirmationModal,
+    UserModal
   ],
   exports: [
     MatFormFieldModule,

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using OnlineMarketPlace.Application.Interfaces;
 using OnlineMarketPlace.Domain;
 using OnlineMarketPlace.WebApi.Helpers;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Models;
 
 namespace OnlineMarketPlace.WebApi.Controllers
 {
@@ -14,11 +16,13 @@ namespace OnlineMarketPlace.WebApi.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
+        private readonly AppSettings _appSettings;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IOptions<AppSettings> appSettings)
         {
             _userService = userService;
+            _appSettings = appSettings.Value;
         }
 
         [HttpGet]
@@ -40,7 +44,21 @@ namespace OnlineMarketPlace.WebApi.Controllers
                 return BadRequest();
 
             var user = Mapper.Instance.ToUser(userViewModel);
+            user.Password = _userService.GeneratePassword();
+            _userService.SendEmailWithPassword(user, _appSettings.SendEmailSettings);
             _userService.Insert(user);
+            return Ok();
+        }
+
+        [HttpPut]
+        [Authorize(new[] { Role.Admin })]
+        public IActionResult Put([FromBody] UserViewModel userViewModel)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var user = Mapper.Instance.ToUser(userViewModel);
+            _userService.Update(user);
             return Ok();
         }
     }

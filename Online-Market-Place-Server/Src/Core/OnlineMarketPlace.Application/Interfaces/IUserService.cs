@@ -1,4 +1,5 @@
 ﻿using OnlineMarketPlace.Domain;
+using OnlineMarketPlace.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,5 +13,7 @@ namespace OnlineMarketPlace.Application.Interfaces
         void Insert(User user);
         void Update(User user);
         void Delete(int id);
+        string GeneratePassword();
+        void SendEmailWithPassword(User user, SendEmailSettings settings);
     }
 }

@@ -52,8 +52,7 @@ namespace OnlineMarketPlace.WebApi.Helpers
             {
                 Email = user.Email,
                 Role = user.Role,
-                Username = user.Username,
-                Password = user.Password
+                Username = user.Username
             };
         }
     }

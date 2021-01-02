@@ -33,6 +33,8 @@ import { LoginCommunicationService } from './services/communcation-services/logi
 import { InitialsPipe } from './pipes/initials.pipe';
 import { RegisterComponent } from './components/register/register.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { HeaderComponent } from './components/header/header.component';
+import { ObjectTypeComponent } from './components/object-type/object-type.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { MatDividerModule } from '@angular/material/divider';
     DeleteConfirmationModal,
     UserModal,
     InitialsPipe,
-    RegisterComponent
+    RegisterComponent,
+    HeaderComponent,
+    ObjectTypeComponent
   ],
   imports: [
     BrowserModule,

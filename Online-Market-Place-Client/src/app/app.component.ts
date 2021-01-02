@@ -10,25 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public loggedUser: User;
-
-  constructor(public storageService: StorageService, 
-    private loginCommunicationService: LoginCommunicationService,
-    private router: Router,
-    private route: ActivatedRoute) { 
-    this.loggedUser = this.storageService.getLoggedInUser();
-    this.loginCommunicationService.loginObservable$.subscribe(_ => {
-      this.loggedUser = this.storageService.getLoggedInUser();
-    });
-  }
-
-  goToUserPage(): void {
-    this.router.navigate(['/users'], {relativeTo: this.route});
-  }
-
-  logOut(): void {
-    this.loggedUser = null;
-    this.storageService.clear();
-    this.router.navigate(['/login'], {relativeTo: this.route});
+  constructor() { 
+    
   }
 }

@@ -1,0 +1,31 @@
+<p *ngIf="loggedUser">
+    <mat-toolbar color="primary">
+        <mat-menu #profileMenu="matMenu" xPosition="before">
+            <div class="profile-menu-topbar">
+                <div class="icon-profile-menu-topbar">{{loggedUser.username | initials}}</div>
+                <div class="info-profile-menu-topbar">
+                    <div class="display-name-profile-menu-topbar">{{loggedUser.username}}</div>
+                    <span class="mat-caption">{{loggedUser.email}}</span>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <button (click)="goToUserPage()" mat-menu-item>
+                <mat-icon>group</mat-icon>
+                <span>Manage users</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>settings</mat-icon>
+                <span>Manage product types</span>
+            </button>
+            <button (click)="logOut()" mat-menu-item>
+                <mat-icon>login</mat-icon>
+                <span>Logout</span>
+            </button>
+        </mat-menu>
+        <button [matMenuTriggerFor]="profileMenu" one-icon-button mat-icon-button>
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>Online Market Place</span>
+        <span class="example-spacer"></span>
+    </mat-toolbar>
+</p>

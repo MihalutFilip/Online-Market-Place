@@ -28,12 +28,11 @@ export class HttpAuthInterceptor implements HttpInterceptor {
       error => {
           if (error instanceof HttpErrorResponse) {
               if (error.status === 401) {
-                  this.storageService.clear();
-                  this.router.navigate(['/login']);
+                this.snackBar.open('You are not authorized for this action', '', { duration: Constants.SECONDS_FOR_SNACKBAR, panelClass: ['red-snackbar'] });
               } else if (error.status === 400) {
                   this.snackBar.open(error.error, '', { duration: Constants.SECONDS_FOR_SNACKBAR, panelClass: ['red-snackbar'] });
               } else {
-                  this.snackBar.open(`An error has occurred ${error.error}`, '', { duration: Constants.SECONDS_FOR_SNACKBAR, panelClass: ['red-snackbar'] });
+                  this.snackBar.open(`An error has occurred`, '', { duration: Constants.SECONDS_FOR_SNACKBAR, panelClass: ['red-snackbar'] });
               }
           }
       }

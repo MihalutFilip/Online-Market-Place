@@ -15,6 +15,7 @@ namespace OnlineMarketPlace.Domain
     {
         String,
         Integer,
+        Float,
         Boolean
     }
 }

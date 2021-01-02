@@ -16,4 +16,8 @@ export class ObjectTypeService {
   public getObjectTypes(): Observable<ObjectType[]> {
     return this.httpClient.get<ObjectType[]>(`${this.baseApiUrl}`);
   }
+
+  public saveObjectType(objectType: ObjectType): Observable<ObjectType> {
+    return this.httpClient.post<ObjectType>(`${this.baseApiUrl}`, objectType, { headers: this.headers });
+  }
 }

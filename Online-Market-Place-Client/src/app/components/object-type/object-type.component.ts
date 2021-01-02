@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataType } from 'src/app/enums/data-type';
 import { ObjectTypeModal } from 'src/app/modals/object-type-modal/object-type-modal';
 import { ObjectType } from 'src/app/models/object-type';
 import { ObjectTypeService } from 'src/app/services/object-type.service';
+import { Constants } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-object-type',
@@ -17,7 +19,8 @@ export class ObjectTypeComponent implements OnInit {
   public filterSearch: string;
 
   constructor(private objectTypeService: ObjectTypeService,
-    public dialog: MatDialog) { 
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar) { 
     this.objectTypeService.getObjectTypes().subscribe(result => {
       this.objectTypes = result;
       this.filteredObjectTypes = result;
@@ -26,7 +29,6 @@ export class ObjectTypeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.objectTypes);
   }
 
   onFilterChanged() {
@@ -40,14 +42,15 @@ export class ObjectTypeComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe(user => {
-      console.log(user);
-      if (user) {
-        // this.usersService.saveUser(user).subscribe(savedUser => {
-        //   this.users.push(savedUser);
-        //   this.dataSource = new MatTableDataSource(this.users);
-        //   this.snackBar.open("The user was saved", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
-        // });
+    dialogRef.afterClosed().subscribe(objectType => {
+      if (objectType) {
+        this.objectTypeService.saveObjectType(objectType).subscribe(savedObjectType => {
+      console.log(savedObjectType);
+
+          this.objectTypes.push(savedObjectType);
+          this.onFilterChanged();
+          this.snackBar.open("The product type was saved", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
+        });
       }
     }
     );

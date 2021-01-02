@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineMarketPlace.Application.Interfaces;
 using OnlineMarketPlace.Domain;
 using OnlineMarketPlace.WebApi.Helpers;
+using OnlineMarketPlace.WebApi.Models;
 
 namespace OnlineMarketPlace.WebApi.Controllers
 {
@@ -29,15 +30,15 @@ namespace OnlineMarketPlace.WebApi.Controllers
             return Ok(objectTypes);
         }
 
-        //[HttpPost]
-        //[Authorize(new[] { Role.Admin })]
-        //public IActionResult Insert()
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest();
+        [HttpPost]
+        [Authorize(new[] { Role.Admin })]
+        public IActionResult Insert(ObjectTypeViewModel objectType)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
 
-        //    //var users = _objectTypeService.GetAll().Select(user => Mapper.Instance.ToUserViewModel(user));
-        //    return Ok(users);
-        //}
+            var savedObjectType = _objectTypeService.Insert(Mapper.Instance.ToObjectType(objectType));
+            return Ok(Mapper.Instance.ToObjectTypeViewModel(savedObjectType));
+        }
     }
 }

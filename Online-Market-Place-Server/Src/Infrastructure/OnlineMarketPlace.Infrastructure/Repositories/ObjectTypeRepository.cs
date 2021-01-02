@@ -22,7 +22,7 @@ namespace OnlineMarketPlace.Infrastructure.Repositories
                         Id = o.Id,
                         Name = o.Name,
                         AttributeTypes = (from a in _context.AttributeTypes
-                                          where a.Id == o.Id
+                                          where a.ObjectTypeId == o.Id
                                           select a).ToList()
                     });
 

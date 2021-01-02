@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OnlineMarketPlace.Infrastructure.Interfaces
 {
-    interface IAttributeTypeRepository : IRepository<AttributeType>
+    public interface IAttributeTypeRepository : IRepository<AttributeType>
     {
     }
 }

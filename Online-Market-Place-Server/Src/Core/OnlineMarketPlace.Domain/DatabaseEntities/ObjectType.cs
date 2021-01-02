@@ -9,6 +9,7 @@ namespace OnlineMarketPlace.Domain
     public class ObjectType : Entity
     {
         public string Name { get; set; }
+        public string Description { get; set; }
         public ICollection<ObjectForSale> ObjectsForSale { get; set; }
         public ICollection<AttributeType> AttributeTypes { get; set; }
     }

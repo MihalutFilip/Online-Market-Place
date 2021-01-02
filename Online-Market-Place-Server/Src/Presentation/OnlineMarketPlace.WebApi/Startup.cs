@@ -44,9 +44,12 @@ namespace WebApi
 
             // configure DI for application services
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IObjectTypeRepository, ObjectTypeRepository>();
+            services.AddScoped<IAttributeTypeRepository, AttributeTypeRepository>();
 
             services.AddScoped<IAuthorizeService, AuthorizeService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IObjectTypeService, ObjectTypeService>();
 
             services.AddDbContext<MarketPlaceContext>(options => options.UseSqlServer("Data Source=.;Initial Catalog=MarketPlace;Integrated Security=True"));
         }

@@ -35,6 +35,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { HeaderComponent } from './components/header/header.component';
 import { ObjectTypeComponent } from './components/object-type/object-type.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ObjectTypeModal } from './modals/object-type-modal/object-type-modal';
+import { MatChipsModule } from '@angular/material/chips';
+import { DataTypePipe } from './pipes/data-type.pipe';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,9 @@ import { ObjectTypeComponent } from './components/object-type/object-type.compon
     InitialsPipe,
     RegisterComponent,
     HeaderComponent,
-    ObjectTypeComponent
+    ObjectTypeComponent,
+    ObjectTypeModal,
+    DataTypePipe
   ],
   imports: [
     BrowserModule,
@@ -69,7 +75,9 @@ import { ObjectTypeComponent } from './components/object-type/object-type.compon
     MatIconModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatDividerModule
+    MatDividerModule,
+    MatExpansionModule,
+    MatChipsModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS, useClass: HttpAuthInterceptor, multi: true},
@@ -81,7 +89,8 @@ import { ObjectTypeComponent } from './components/object-type/object-type.compon
   ],
   entryComponents: [
     DeleteConfirmationModal,
-    UserModal
+    UserModal,
+    ObjectTypeModal
   ],
   exports: [
     MatFormFieldModule,

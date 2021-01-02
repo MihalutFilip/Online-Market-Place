@@ -10,6 +10,7 @@ namespace OnlineMarketPlace.Infrastructure.Repositories
     {
         public AttributeTypeRepository(MarketPlaceContext context) : base(context)
         {
+
         }
     }
 }

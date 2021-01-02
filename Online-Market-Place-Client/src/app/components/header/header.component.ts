@@ -34,4 +34,9 @@ export class HeaderComponent implements OnInit {
     this.storageService.clear();
     this.router.navigate(['/login'], { relativeTo: this.route });
   }
+
+  goToObjectTypePage() {
+    console.log('Here');
+    this.router.navigate(['/object-type'], { relativeTo: this.route });
+  }
 }

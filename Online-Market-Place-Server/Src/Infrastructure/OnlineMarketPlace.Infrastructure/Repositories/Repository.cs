@@ -19,7 +19,7 @@ namespace OnlineMarketPlace.Infrastructure.Repositories
             _table = _context.Set<T>();
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             return _table.AsEnumerable();
         }

@@ -1,7 +1,7 @@
 import { AttributeType } from "./attribute-type";
 import { ObjectForSale } from "./object-for-sale";
 
-export interface AttributeValue {
+export class AttributeValue {
     id: number;
     value: number;
     attributeType: AttributeType;

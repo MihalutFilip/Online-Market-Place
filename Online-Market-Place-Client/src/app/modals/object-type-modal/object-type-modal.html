@@ -1,0 +1,77 @@
+<form class="object-type-form" *ngIf="objectType">
+    <p>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input type="text" matInput [(ngModel)]="objectType.name" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field >
+            <mat-label>Description</mat-label>
+            <input type="text" matInput [(ngModel)]="objectType.description" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+    </p>
+    <p class="attribute-type-title">
+        Attribute Types
+    </p>
+    <p>
+        <mat-form-field>
+            <mat-label>String type</mat-label>
+            <mat-chip-list #stringChipList>
+                <mat-chip *ngFor="let attributeType of attributeTypes[0]" [removable]="true"
+                    (removed)="remove(attributeType, 0)">
+                    {{attributeType.name}}
+                    <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="New attribute type..." [matChipInputFor]="stringChipList"
+                    (matChipInputTokenEnd)="add($event, 0)">
+            </mat-chip-list>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <mat-label>Integer type</mat-label>
+            <mat-chip-list #integerChipList>
+                <mat-chip *ngFor="let attributeType of attributeTypes[1]" [removable]="true"
+                    (removed)="remove(attributeType, 1)">
+                    {{attributeType.name}}
+                    <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="New attribute type..." [matChipInputFor]="integerChipList"
+                    (matChipInputTokenEnd)="add($event, 1)">
+            </mat-chip-list>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <mat-label>Float type</mat-label>
+            <mat-chip-list #floatChipList>
+                <mat-chip *ngFor="let attributeType of attributeTypes[2]" [removable]="true"
+                    (removed)="remove(attributeType, 2)">
+                    {{attributeType.name}}
+                    <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="New attribute type..." [matChipInputFor]="floatChipList"
+                    (matChipInputTokenEnd)="add($event, 2)">
+            </mat-chip-list>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field>
+            <mat-label>Boolean type</mat-label>
+            <mat-chip-list #booleanChipList>
+                <mat-chip *ngFor="let attributeType of attributeTypes[3]" [removable]="true"
+                    (removed)="remove(attributeType, 3)">
+                    {{attributeType.name}}
+                    <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="New attribute type..." [matChipInputFor]="booleanChipList"
+                    (matChipInputTokenEnd)="add($event, 3)">
+            </mat-chip-list>
+        </mat-form-field>
+    </p>
+</form>
+<button mat-flat-button [disabled]="!objectType.name || !objectType.description" [mat-dialog-close]="objectType"
+    color="primary">
+    Save
+</button>

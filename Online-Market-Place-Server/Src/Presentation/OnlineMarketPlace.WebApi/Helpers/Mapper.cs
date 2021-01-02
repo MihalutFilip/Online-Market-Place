@@ -23,7 +23,7 @@ namespace OnlineMarketPlace.WebApi.Helpers
             }
         }
 
-        public UserViewModel ToUserViewModel(User user, string jwtToken)
+        public UserViewModel ToUserViewModel(User user, string jwtToken = null)
         {
             return new UserViewModel()
             {
@@ -32,17 +32,6 @@ namespace OnlineMarketPlace.WebApi.Helpers
                 Role = user.Role,
                 Username = user.Username,
                 JwtToken = jwtToken
-            };
-        }
-
-        public UserViewModel ToUserViewModel(User user)
-        {
-            return new UserViewModel()
-            {
-                Id = user.Id,
-                Email = user.Email,
-                Role = user.Role,
-                Username = user.Username
             };
         }
 
@@ -55,6 +44,48 @@ namespace OnlineMarketPlace.WebApi.Helpers
                 Role = user.Role,
                 Username = user.Username,
                 Password = user.Password
+            };
+        }
+
+        public ObjectTypeViewModel ToObjectTypeViewModel(ObjectType objectType)
+        {
+            return new ObjectTypeViewModel()
+            {
+                Id = objectType.Id,
+                Name = objectType.Name,
+                Description = objectType.Description,
+                AttributeTypes = objectType.AttributeTypes.Select(a => ToAttributeTypeViewModel(a)).ToList()
+            };
+        }
+
+        public ObjectType ToObjectType(ObjectTypeViewModel objectType)
+        {
+            return new ObjectType()
+            {
+                Id = objectType.Id,
+                Name = objectType.Name,
+                Description = objectType.Description,
+                AttributeTypes = objectType.AttributeTypes.Select(a => ToAttributeType(a)).ToList()
+            };
+        }
+
+        public AttributeTypeViewModel ToAttributeTypeViewModel(AttributeType attributeType)
+        {
+            return new AttributeTypeViewModel()
+            {
+                Id = attributeType.Id,
+                Name = attributeType.Name,
+                DataType = attributeType.DataType
+            };
+        }
+
+        public AttributeType ToAttributeType(AttributeTypeViewModel attributeType)
+        {
+            return new AttributeType()
+            {
+                Id = attributeType.Id,
+                Name = attributeType.Name,
+                DataType = attributeType.DataType
             };
         }
     }

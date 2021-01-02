@@ -29,9 +29,6 @@ namespace OnlineMarketPlace.WebApi.Controllers
         [Authorize(new[] { Role.Admin })]
         public IActionResult GetAll()
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
-
             var users = _userService.GetAll().Select(user => Mapper.Instance.ToUserViewModel(user));
             return Ok(users);
         }

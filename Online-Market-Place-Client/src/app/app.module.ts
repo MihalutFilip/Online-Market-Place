@@ -31,6 +31,8 @@ import { UserModal } from './modals/user-modal/user-modal';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoginCommunicationService } from './services/communcation-services/login-communication.service';
 import { InitialsPipe } from './pipes/initials.pipe';
+import { RegisterComponent } from './components/register/register.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { InitialsPipe } from './pipes/initials.pipe';
     UsersComponent,
     DeleteConfirmationModal,
     UserModal,
-    InitialsPipe
+    InitialsPipe,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -61,8 +64,8 @@ import { InitialsPipe } from './pipes/initials.pipe';
     ReactiveFormsModule,
     MatIconModule,
     BrowserAnimationsModule,
-    MatToolbarModule
-
+    MatToolbarModule,
+    MatDividerModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS, useClass: HttpAuthInterceptor, multi: true},

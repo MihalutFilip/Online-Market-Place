@@ -57,6 +57,24 @@ namespace OnlineMarketPlace.WebApi.Controllers
             }
         }
 
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] UserViewModel userViewModel)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            try
+            {
+                var user = Mapper.Instance.ToUser(userViewModel);
+                var savedUser = _userService.Insert(user);
+                return Ok(Mapper.Instance.ToUserViewModel(savedUser));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         [HttpPut]
         [Authorize(new[] { Role.Admin })]
         public IActionResult Put([FromBody] UserViewModel userViewModel)

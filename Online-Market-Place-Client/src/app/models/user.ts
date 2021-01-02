@@ -6,4 +6,5 @@ export interface User {
     email: string;
     jwtToken: string;
     role: Role;
+    password: string;
 }

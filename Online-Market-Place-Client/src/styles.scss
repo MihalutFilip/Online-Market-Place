@@ -4,3 +4,7 @@
 .red-snackbar {
     background: #DC143C;
 }
+
+button:focus {
+    outline: none !important;
+}

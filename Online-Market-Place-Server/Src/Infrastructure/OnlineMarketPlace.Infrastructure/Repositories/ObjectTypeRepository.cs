@@ -21,6 +21,7 @@ namespace OnlineMarketPlace.Infrastructure.Repositories
                     {
                         Id = o.Id,
                         Name = o.Name,
+                        Description = o.Description,
                         AttributeTypes = (from a in _context.AttributeTypes
                                           where a.ObjectTypeId == o.Id
                                           select a).ToList()

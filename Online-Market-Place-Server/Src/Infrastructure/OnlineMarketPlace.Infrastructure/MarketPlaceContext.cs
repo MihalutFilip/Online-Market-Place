@@ -46,7 +46,7 @@ namespace OnlineMarketPlace.Infrastructure
             modelBuilder.Entity<AttributeType>()
                 .HasOne(x => x.ObjectType)
                 .WithMany(x => x.AttributeTypes)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }         
     }
 }

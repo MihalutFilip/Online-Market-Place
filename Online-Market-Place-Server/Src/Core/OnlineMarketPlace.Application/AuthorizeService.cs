@@ -22,6 +22,10 @@ namespace OnlineMarketPlace.Application
         public User Authenticate(string email, string password)
         {
             var user = _userRepository.GetByEmail(email);
+
+            if (user == null)
+                return null;  
+
             return PasswordHasher.Instance.Check(user.Password, password) ? user : null;
         }
 

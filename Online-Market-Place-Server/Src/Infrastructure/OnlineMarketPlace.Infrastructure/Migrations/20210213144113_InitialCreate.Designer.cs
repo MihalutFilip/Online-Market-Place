@@ -9,7 +9,7 @@ using OnlineMarketPlace.Infrastructure;
 namespace OnlineMarketPlace.Infrastructure.Migrations
 {
     [DbContext(typeof(MarketPlaceContext))]
-    [Migration("20201219153028_InitialCreate")]
+    [Migration("20210213144113_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -100,6 +100,9 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -137,7 +140,7 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                     b.HasOne("OnlineMarketPlace.Domain.ObjectType", "ObjectType")
                         .WithMany("AttributeTypes")
                         .HasForeignKey("ObjectTypeId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

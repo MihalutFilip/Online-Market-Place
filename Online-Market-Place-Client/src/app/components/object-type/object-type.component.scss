@@ -7,3 +7,26 @@
     float: right;
     margin-top: -50px;
 }
+
+::ng-deep .mat-expansion-panel-header-title {
+    width: 30% !important;
+    flex-grow: 0 !important;
+    padding-top: 7px !important;
+}
+
+::ng-deep .mat-expansion-panel-header-description {
+    padding-top: 7px !important;
+}
+
+.object-type-name {
+    font-weight: bold;
+}
+
+.description-panel {
+    width: 100%;
+
+    .delete-icon {
+        float: right;
+        margin-top: -7px;
+    }
+}

@@ -138,7 +138,7 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                     b.HasOne("OnlineMarketPlace.Domain.ObjectType", "ObjectType")
                         .WithMany("AttributeTypes")
                         .HasForeignKey("ObjectTypeId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

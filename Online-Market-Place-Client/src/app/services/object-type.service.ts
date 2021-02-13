@@ -20,4 +20,8 @@ export class ObjectTypeService {
   public saveObjectType(objectType: ObjectType): Observable<ObjectType> {
     return this.httpClient.post<ObjectType>(`${this.baseApiUrl}`, objectType, { headers: this.headers });
   }
+
+  public removeObjectType(objectTypeId: Number): Observable<any> {
+    return this.httpClient.delete<ObjectType>(`${this.baseApiUrl}/${objectTypeId}`);
+  }
 }

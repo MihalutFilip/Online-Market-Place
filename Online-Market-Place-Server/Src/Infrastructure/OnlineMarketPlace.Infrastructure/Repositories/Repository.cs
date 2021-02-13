@@ -53,6 +53,7 @@ namespace OnlineMarketPlace.Infrastructure.Repositories
             T entity = _table.SingleOrDefault(s => s.Id == id);
             _table.Remove(entity);
             _context.SaveChanges();
+
         }
     }
 }

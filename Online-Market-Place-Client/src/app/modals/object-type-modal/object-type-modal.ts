@@ -28,20 +28,13 @@ export class ObjectTypeModal implements OnInit {
 
     ngOnInit() {
         this.objectType = this.data.objectType;
-        this.objectType.attributeTypes = [
-            <AttributeType>{
-                name: 'Aaa',
-                dataType: DataType.String
-            }
-        ]
+        this.objectType.attributeTypes = [];
         this.dataTypeKeys = Object.keys(DataType).slice(4);
         this.initializeAttributeType();
-        console.log(this.DataType);
     }
 
     initializeAttributeType() {
         this.dataTypeKeys.forEach(x => this.attributeTypes.push(this.objectType.attributeTypes.filter(a => DataType[a.dataType] == x)));
-        console.log(this.attributeTypes);
     }
 
     add(event: MatChipInputEvent, dataType: number): void {

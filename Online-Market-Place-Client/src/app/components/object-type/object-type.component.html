@@ -19,10 +19,22 @@
     <mat-expansion-panel *ngFor="let objectType of filteredObjectTypes" hideToggle>
         <mat-expansion-panel-header>
             <mat-panel-title>
-                {{objectType.name}}
+                <span class="object-type-name">
+                    {{objectType.name}}
+                </span>
             </mat-panel-title>
             <mat-panel-description>
-                {{objectType.description}}
+                <div class="description-panel">
+                    <span>
+                        {{objectType.description}}
+                    </span>
+                    <button class="delete-icon" mat-button
+                        (click)="removeObjectType(objectType);$event.stopPropagation();">
+                        <span class="material-icons">
+                            delete
+                        </span>
+                    </button>
+                </div>
             </mat-panel-description>
         </mat-expansion-panel-header>
         <div *ngFor="let attributeType of objectType.attributeTypes">

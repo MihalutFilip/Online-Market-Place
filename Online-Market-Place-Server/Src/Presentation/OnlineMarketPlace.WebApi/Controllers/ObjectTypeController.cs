@@ -40,5 +40,16 @@ namespace OnlineMarketPlace.WebApi.Controllers
             var savedObjectType = _objectTypeService.Insert(Mapper.Instance.ToObjectType(objectType));
             return Ok(Mapper.Instance.ToObjectTypeViewModel(savedObjectType));
         }
+
+        [HttpDelete("{objectTypeId}")]
+        [Authorize(new[] { Role.Admin })]
+        public IActionResult Delete(int objectTypeId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            _objectTypeService.Delete(objectTypeId);
+            return Ok();
+        }
     }
 }

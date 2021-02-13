@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataType } from 'src/app/enums/data-type';
+import { DeleteConfirmationModal } from 'src/app/modals/delete-confirmation/delete-confirmation';
 import { ObjectTypeModal } from 'src/app/modals/object-type-modal/object-type-modal';
 import { ObjectType } from 'src/app/models/object-type';
 import { ObjectTypeService } from 'src/app/services/object-type.service';
@@ -22,9 +23,9 @@ export class ObjectTypeComponent implements OnInit {
     public dialog: MatDialog,
     private snackBar: MatSnackBar) { 
     this.objectTypeService.getObjectTypes().subscribe(result => {
+      console.log(result);
       this.objectTypes = result;
       this.filteredObjectTypes = result;
-      console.log(result);
     });
   }
 
@@ -48,11 +49,25 @@ export class ObjectTypeComponent implements OnInit {
       console.log(savedObjectType);
 
           this.objectTypes.push(savedObjectType);
-          this.onFilterChanged();
+          this.filteredObjectTypes = this.objectTypes;
           this.snackBar.open("The product type was saved", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
         });
       }
-    }
-    );
+    });
+  }
+
+  removeObjectType(objectType: ObjectType) {
+    let dialogRef = this.dialog.open(DeleteConfirmationModal);
+    
+    dialogRef.afterClosed().subscribe(confirmationForDelete => {
+      if (confirmationForDelete) {
+        this.objectTypeService.removeObjectType(objectType.id).subscribe(_ => {
+          let index = this.objectTypes.indexOf(objectType);
+          this.objectTypes.slice(index);
+          this.filteredObjectTypes = this.objectTypes;
+          this.snackBar.open("The product type was deleted", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
+        });
+      }
+    });
   }
 }

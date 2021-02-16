@@ -23,9 +23,12 @@ export class ObjectTypeComponent implements OnInit {
     public dialog: MatDialog,
     private snackBar: MatSnackBar) { 
     this.objectTypeService.getObjectTypes().subscribe(result => {
-      console.log(result);
       this.objectTypes = result;
       this.filteredObjectTypes = result;
+
+      if(result.length == 0) {
+        this.snackBar.open("No product type defined.", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
+      }
     });
   }
 
@@ -62,8 +65,8 @@ export class ObjectTypeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(confirmationForDelete => {
       if (confirmationForDelete) {
         this.objectTypeService.removeObjectType(objectType.id).subscribe(_ => {
-          let index = this.objectTypes.indexOf(objectType);
-          this.objectTypes.slice(index);
+          let indexOfObject = this.objectTypes.indexOf(objectType);
+          this.objectTypes.splice(indexOfObject, 1);
           this.filteredObjectTypes = this.objectTypes;
           this.snackBar.open("The product type was deleted", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
         });

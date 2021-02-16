@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Role } from 'src/app/enums/role';
 import { User } from 'src/app/models/user';
 import { LoginCommunicationService } from 'src/app/services/communcation-services/login-communication.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -11,6 +12,7 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class HeaderComponent implements OnInit {
   public loggedUser: User;
+  public Role = Role;
 
   constructor(public storageService: StorageService,
     private loginCommunicationService: LoginCommunicationService,
@@ -36,7 +38,10 @@ export class HeaderComponent implements OnInit {
   }
 
   goToObjectTypePage() {
-    console.log('Here');
     this.router.navigate(['/object-type'], { relativeTo: this.route });
+  }
+
+  goToObjectsPage() {
+    this.router.navigate(['/objects'], { relativeTo: this.route });
   }
 }

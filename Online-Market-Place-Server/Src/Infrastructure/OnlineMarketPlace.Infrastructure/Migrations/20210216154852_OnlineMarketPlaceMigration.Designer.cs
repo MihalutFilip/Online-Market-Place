@@ -9,8 +9,8 @@ using OnlineMarketPlace.Infrastructure;
 namespace OnlineMarketPlace.Infrastructure.Migrations
 {
     [DbContext(typeof(MarketPlaceContext))]
-    [Migration("20210213144113_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210216154852_OnlineMarketPlaceMigration")]
+    partial class OnlineMarketPlaceMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,12 +33,12 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ObjectTypeId")
+                    b.Property<int>("ProductTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ObjectTypeId");
+                    b.HasIndex("ProductTypeId");
 
                     b.ToTable("AttributeTypes");
                 });
@@ -53,7 +53,7 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                     b.Property<int>("AttributeTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ObjectForSaleId")
+                    b.Property<int>("ProductForSaleId")
                         .HasColumnType("int");
 
                     b.Property<int>("Value")
@@ -63,37 +63,37 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
 
                     b.HasIndex("AttributeTypeId");
 
-                    b.HasIndex("ObjectForSaleId");
+                    b.HasIndex("ProductForSaleId");
 
                     b.ToTable("AttributeValues");
                 });
 
-            modelBuilder.Entity("OnlineMarketPlace.Domain.ObjectForSale", b =>
+            modelBuilder.Entity("OnlineMarketPlace.Domain.ProductForSale", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ObjectTypeId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ObjectTypeId");
+                    b.HasIndex("ProductTypeId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ObjectsForSale");
+                    b.ToTable("ProductsForSale");
                 });
 
-            modelBuilder.Entity("OnlineMarketPlace.Domain.ObjectType", b =>
+            modelBuilder.Entity("OnlineMarketPlace.Domain.ProductType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,7 +108,7 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ObjectTypes");
+                    b.ToTable("ProductTypes");
                 });
 
             modelBuilder.Entity("OnlineMarketPlace.Domain.User", b =>
@@ -137,9 +137,9 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
 
             modelBuilder.Entity("OnlineMarketPlace.Domain.AttributeType", b =>
                 {
-                    b.HasOne("OnlineMarketPlace.Domain.ObjectType", "ObjectType")
+                    b.HasOne("OnlineMarketPlace.Domain.ProductType", "ProductType")
                         .WithMany("AttributeTypes")
-                        .HasForeignKey("ObjectTypeId")
+                        .HasForeignKey("ProductTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -152,23 +152,23 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("OnlineMarketPlace.Domain.ObjectForSale", "ObjectForSale")
+                    b.HasOne("OnlineMarketPlace.Domain.ProductForSale", "ProductForSale")
                         .WithMany("AttributeValues")
-                        .HasForeignKey("ObjectForSaleId")
+                        .HasForeignKey("ProductForSaleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OnlineMarketPlace.Domain.ObjectForSale", b =>
+            modelBuilder.Entity("OnlineMarketPlace.Domain.ProductForSale", b =>
                 {
-                    b.HasOne("OnlineMarketPlace.Domain.ObjectType", "ObjectType")
-                        .WithMany("ObjectsForSale")
-                        .HasForeignKey("ObjectTypeId")
+                    b.HasOne("OnlineMarketPlace.Domain.ProductType", "ProductType")
+                        .WithMany("ProductsForSale")
+                        .HasForeignKey("ProductTypeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("OnlineMarketPlace.Domain.User", "User")
-                        .WithMany("ObjectsForSale")
+                        .WithMany("ProductsForSale")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();

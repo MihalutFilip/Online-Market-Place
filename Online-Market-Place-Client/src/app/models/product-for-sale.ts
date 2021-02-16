@@ -1,12 +1,12 @@
 import { AttributeType } from "./attribute-type";
 import { AttributeValue } from "./attribute-value";
-import { ObjectType } from "./object-type";
+import { ProductType } from "./product-type";
 import { User } from "./user";
 
-export class ObjectForSale {
+export class ProductForSale {
     id: number;
     price: number;
     user: User;
-    objectType: ObjectType;
+    productType: ProductType;
     attributeValues: AttributeValue[];
 }

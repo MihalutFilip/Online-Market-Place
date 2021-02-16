@@ -11,8 +11,8 @@ namespace OnlineMarketPlace.Domain
         public string Name { get; set; }
         public DataType DataType { get; set; }
 
-        public ObjectType ObjectType { get; set; }
-        public int ObjectTypeId { get; set; }
+        public ProductType ProductType { get; set; }
+        public int ProductTypeId { get; set; }
 
         public ICollection<AttributeValue> AttributeValues { get; set; }
     }

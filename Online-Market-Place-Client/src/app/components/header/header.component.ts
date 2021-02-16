@@ -37,11 +37,11 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login'], { relativeTo: this.route });
   }
 
-  goToObjectTypePage() {
-    this.router.navigate(['/object-type'], { relativeTo: this.route });
+  goToProductTypePage() {
+    this.router.navigate(['/product-type'], { relativeTo: this.route });
   }
 
   goToObjectsPage() {
-    this.router.navigate(['/objects'], { relativeTo: this.route });
+    this.router.navigate(['/products'], { relativeTo: this.route });
   }
 }

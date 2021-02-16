@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OnlineMarketPlace.Domain
 {
-    public class ObjectForSale : Entity
+    public class ProductForSale : Entity
     {
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
@@ -13,8 +13,8 @@ namespace OnlineMarketPlace.Domain
         public User User { get; set; }
         public int UserId { get; set; }
 
-        public ObjectType ObjectType { get; set; }
-        public int ObjectTypeId { get; set; }
+        public ProductType ProductType { get; set; }
+        public int ProductTypeId { get; set; }
 
         public ICollection<AttributeValue> AttributeValues { get; set; }
     }

@@ -13,11 +13,11 @@ namespace OnlineMarketPlace.WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ObjectTypeController : ControllerBase
+    public class ProductTypeController : ControllerBase
     {
-        private readonly IObjectTypeService _objectTypeService;
+        private readonly IProductTypeService _objectTypeService;
 
-        public ObjectTypeController(IObjectTypeService objectTypeService)
+        public ProductTypeController(IProductTypeService objectTypeService)
         {
             _objectTypeService = objectTypeService;
         }
@@ -32,7 +32,7 @@ namespace OnlineMarketPlace.WebApi.Controllers
 
         [HttpPost]
         [Authorize(new[] { Role.Admin })]
-        public IActionResult Insert(ObjectTypeViewModel objectType)
+        public IActionResult Insert(ProductTypeViewModel objectType)
         {
             if (!ModelState.IsValid)
                 return BadRequest();

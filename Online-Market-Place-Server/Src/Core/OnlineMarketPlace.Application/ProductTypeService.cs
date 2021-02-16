@@ -7,11 +7,11 @@ using System.Text;
 
 namespace OnlineMarketPlace.Application
 {
-    public class ObjectTypeService : IObjectTypeService
+    public class ProductTypeService : IProductTypeService
     {
-        private readonly IObjectTypeRepository _objectTypeRepository;
+        private readonly IProductTypeRepository _objectTypeRepository;
 
-        public ObjectTypeService(IObjectTypeRepository objectTypeRepository)
+        public ProductTypeService(IProductTypeRepository objectTypeRepository)
         {
             _objectTypeRepository = objectTypeRepository;
         }
@@ -21,22 +21,22 @@ namespace OnlineMarketPlace.Application
             _objectTypeRepository.Delete(id);
         }
 
-        public IEnumerable<ObjectType> GetAll()
+        public IEnumerable<ProductType> GetAll()
         {
             return _objectTypeRepository.GetAll();
         }
 
-        public ObjectType GetById(int id)
+        public ProductType GetById(int id)
         {
             return _objectTypeRepository.GetById(id);
         }
 
-        public ObjectType Insert(ObjectType objectType)
+        public ProductType Insert(ProductType objectType)
         {
             return _objectTypeRepository.Insert(objectType);
         }
 
-        public ObjectType Update(ObjectType objectType)
+        public ProductType Update(ProductType objectType)
         {
             return _objectTypeRepository.Update(objectType);
         }

@@ -6,9 +6,9 @@ namespace OnlineMarketPlace.Infrastructure
     public class MarketPlaceContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<ObjectType> ObjectTypes { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<AttributeType> AttributeTypes { get; set; }
-        public DbSet<ObjectForSale> ObjectsForSale { get; set; }
+        public DbSet<ProductForSale> ProductsForSale { get; set; }
         public DbSet<AttributeValue> AttributeValues { get; set; }
 
         public MarketPlaceContext(DbContextOptions<MarketPlaceContext> options) : base(options)
@@ -19,15 +19,15 @@ namespace OnlineMarketPlace.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // one to many user - object for sale
-            modelBuilder.Entity<ObjectForSale>()
+            modelBuilder.Entity<ProductForSale>()
                 .HasOne(x => x.User)
-                .WithMany(x => x.ObjectsForSale)
+                .WithMany(x => x.ProductsForSale)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // one to many object type - object for sale
-            modelBuilder.Entity<ObjectForSale>()
-                .HasOne(x => x.ObjectType)
-                .WithMany(x => x.ObjectsForSale)
+            modelBuilder.Entity<ProductForSale>()
+                .HasOne(x => x.ProductType)
+                .WithMany(x => x.ProductsForSale)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // one to many attribute type - attribute value
@@ -38,13 +38,13 @@ namespace OnlineMarketPlace.Infrastructure
 
             // one to many object for sale - attribute value
             modelBuilder.Entity<AttributeValue>()
-                .HasOne(x => x.ObjectForSale)
+                .HasOne(x => x.ProductForSale)
                 .WithMany(x => x.AttributeValues)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // one to many object type - attribute type
             modelBuilder.Entity<AttributeType>()
-                .HasOne(x => x.ObjectType)
+                .HasOne(x => x.ProductType)
                 .WithMany(x => x.AttributeTypes)
                 .OnDelete(DeleteBehavior.Cascade);
         }         

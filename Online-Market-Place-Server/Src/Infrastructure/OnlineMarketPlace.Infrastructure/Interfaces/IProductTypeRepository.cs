@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OnlineMarketPlace.Infrastructure.Interfaces
 {
-    public interface IObjectTypeRepository : IRepository<ObjectType>
+    public interface IProductTypeRepository : IRepository<ProductType>
     {
     }
 }

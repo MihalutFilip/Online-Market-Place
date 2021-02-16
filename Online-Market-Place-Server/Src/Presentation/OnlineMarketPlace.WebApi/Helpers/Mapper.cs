@@ -47,9 +47,9 @@ namespace OnlineMarketPlace.WebApi.Helpers
             };
         }
 
-        public ObjectTypeViewModel ToObjectTypeViewModel(ObjectType objectType)
+        public ProductTypeViewModel ToObjectTypeViewModel(ProductType objectType)
         {
-            return new ObjectTypeViewModel()
+            return new ProductTypeViewModel()
             {
                 Id = objectType.Id,
                 Name = objectType.Name,
@@ -58,9 +58,9 @@ namespace OnlineMarketPlace.WebApi.Helpers
             };
         }
 
-        public ObjectType ToObjectType(ObjectTypeViewModel objectType)
+        public ProductType ToObjectType(ProductTypeViewModel objectType)
         {
-            return new ObjectType()
+            return new ProductType()
             {
                 Id = objectType.Id,
                 Name = objectType.Name,

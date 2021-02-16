@@ -12,7 +12,7 @@ namespace OnlineMarketPlace.Domain
         public AttributeType AttributeType { get; set; }
         public int AttributeTypeId { get; set; }
 
-        public ObjectForSale ObjectForSale { get; set; }
-        public int ObjectForSaleId { get; set; }
+        public ProductForSale ProductForSale { get; set; }
+        public int ProductForSaleId { get; set; }
     }
 }

@@ -1,11 +1,11 @@
 import { DataType } from "../enums/data-type";
 import { AttributeValue } from "./attribute-value";
-import { ObjectType } from "./object-type";
+import { ProductType } from "./product-type";
 
 export class AttributeType {
     id: number;
     name: string;
     dataType: DataType;
-    objectType: ObjectType;
+    productType: ProductType;
     attributeValues: AttributeValue[];
 }

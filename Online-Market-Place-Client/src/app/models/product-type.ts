@@ -1,10 +1,10 @@
 import { AttributeType } from "./attribute-type";
-import { ObjectForSale } from "./object-for-sale";
+import { ProductForSale } from "./product-for-sale";
 
-export class ObjectType {
+export class ProductType {
     id: number;
     name: string;
     description: string;
-    objectsForSale: ObjectForSale[];
+    productForSale: ProductForSale[];
     attributeTypes: AttributeType[] = [];
 }

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OnlineMarketPlace.WebApi.Models
 {
-    public class ObjectTypeViewModel
+    public class ProductTypeViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

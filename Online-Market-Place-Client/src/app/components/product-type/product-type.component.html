@@ -8,28 +8,28 @@
     </div>
 </div>
 
-<button mat-flat-button class="add-object-type-button" color="primary" (click)="saveObjectType()">
+<button mat-flat-button class="add-product-type-button" color="primary" (click)="saveProductType()">
     Add product type
     <span class="material-icons">
         add_circle
     </span>
 </button>
 
-<mat-accordion *ngIf="objectTypes">
-    <mat-expansion-panel *ngFor="let objectType of filteredObjectTypes" hideToggle>
+<mat-accordion *ngIf="productTypes">
+    <mat-expansion-panel *ngFor="let productType of filteredProductTypes" hideToggle>
         <mat-expansion-panel-header>
             <mat-panel-title>
-                <span class="object-type-name">
-                    {{objectType.name}}
+                <span class="product-type-name">
+                    {{productType.name}}
                 </span>
             </mat-panel-title>
             <mat-panel-description>
                 <div class="description-panel">
                     <span>
-                        {{objectType.description}}
+                        {{productType.description}}
                     </span>
                     <button class="delete-icon" mat-button
-                        (click)="removeObjectType(objectType);$event.stopPropagation();">
+                        (click)="removeProductType(productType);$event.stopPropagation();">
                         <span class="material-icons">
                             delete
                         </span>
@@ -37,7 +37,7 @@
                 </div>
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <div *ngFor="let attributeType of objectType.attributeTypes">
+        <div *ngFor="let attributeType of productType.attributeTypes">
             <p>{{attributeType.name}}: {{DataType[attributeType.dataType]}}</p>
         </div>
     </mat-expansion-panel>

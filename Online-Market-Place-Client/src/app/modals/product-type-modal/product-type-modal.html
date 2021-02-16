@@ -1,14 +1,14 @@
-<form class="object-type-form" *ngIf="objectType">
+<form class="product-type-form" *ngIf="productType">
     <p>
         <mat-form-field>
             <mat-label>Name</mat-label>
-            <input type="text" matInput [(ngModel)]="objectType.name" [ngModelOptions]="{standalone: true}">
+            <input type="text" matInput [(ngModel)]="productType.name" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
     </p>
     <p>
         <mat-form-field >
             <mat-label>Description</mat-label>
-            <input type="text" matInput [(ngModel)]="objectType.description" [ngModelOptions]="{standalone: true}">
+            <input type="text" matInput [(ngModel)]="productType.description" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
     </p>
     <p class="attribute-type-title">
@@ -71,7 +71,7 @@
         </mat-form-field>
     </p>
 </form>
-<button mat-flat-button [disabled]="!objectType.name || !objectType.description" [mat-dialog-close]="objectType"
+<button mat-flat-button [disabled]="!productType.name || !productType.description" [mat-dialog-close]="productType"
     color="primary">
     Save
 </button>

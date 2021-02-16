@@ -5,36 +5,36 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DataType } from 'src/app/enums/data-type';
 import { Role } from 'src/app/enums/role';
 import { AttributeType } from 'src/app/models/attribute-type';
-import { ObjectType } from 'src/app/models/object-type';
+import { ProductType } from 'src/app/models/product-type';
 import { User } from 'src/app/models/user'
 
 
 @Component({
-    styleUrls: ['./object-type-modal.scss'],
-    templateUrl: './object-type-modal.html'
+    styleUrls: ['./product-type-modal.scss'],
+    templateUrl: './product-type-modal.html'
 })
 
-export class ObjectTypeModal implements OnInit {
-    public objectType: ObjectType;
+export class ProductTypeModal implements OnInit {
+    public productType: ProductType;
     public attributeTypes = [];
     public DataType = DataType;
     public dataTypeKeys;
     public stringType;
 
-    constructor(public dialogRef: MatDialogRef<ObjectTypeModal>,
+    constructor(public dialogRef: MatDialogRef<ProductTypeModal>,
         @Inject(MAT_DIALOG_DATA) public data: any) {
     }
 
 
     ngOnInit() {
-        this.objectType = this.data.objectType;
-        this.objectType.attributeTypes = [];
+        this.productType = this.data.productType;
+        this.productType.attributeTypes = [];
         this.dataTypeKeys = Object.keys(DataType).slice(4);
         this.initializeAttributeType();
     }
 
     initializeAttributeType() {
-        this.dataTypeKeys.forEach(x => this.attributeTypes.push(this.objectType.attributeTypes.filter(a => DataType[a.dataType] == x)));
+        this.dataTypeKeys.forEach(x => this.attributeTypes.push(this.productType.attributeTypes.filter(a => DataType[a.dataType] == x)));
     }
 
     add(event: MatChipInputEvent, dataType: number): void {
@@ -47,7 +47,7 @@ export class ObjectTypeModal implements OnInit {
                     name: value.trim(),
                     dataType: dataType
                 }
-            this.objectType.attributeTypes.push(attributeType);
+            this.productType.attributeTypes.push(attributeType);
             this.attributeTypes[dataType].push(attributeType);
         }
 
@@ -56,10 +56,10 @@ export class ObjectTypeModal implements OnInit {
     }
 
     remove(attributeTypes: AttributeType, dataType: number): void {
-        var index = this.objectType.attributeTypes.indexOf(attributeTypes);
+        var index = this.productType.attributeTypes.indexOf(attributeTypes);
 
         if (index >= 0) {
-            this.objectType.attributeTypes.splice(index, 1);
+            this.productType.attributeTypes.splice(index, 1);
         }
 
         index = this.attributeTypes[dataType].indexOf(attributeTypes);

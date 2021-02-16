@@ -2,12 +2,12 @@
 
 namespace OnlineMarketPlace.Infrastructure.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class OnlineMarketPlaceMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ObjectTypes",
+                name: "ProductTypes",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -17,7 +17,7 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ObjectTypes", x => x.Id);
+                    table.PrimaryKey("PK_ProductTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -44,40 +44,40 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     DataType = table.Column<int>(nullable: false),
-                    ObjectTypeId = table.Column<int>(nullable: false)
+                    ProductTypeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AttributeTypes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AttributeTypes_ObjectTypes_ObjectTypeId",
-                        column: x => x.ObjectTypeId,
-                        principalTable: "ObjectTypes",
+                        name: "FK_AttributeTypes_ProductTypes_ProductTypeId",
+                        column: x => x.ProductTypeId,
+                        principalTable: "ProductTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ObjectsForSale",
+                name: "ProductsForSale",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     UserId = table.Column<int>(nullable: false),
-                    ObjectTypeId = table.Column<int>(nullable: false)
+                    ProductTypeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ObjectsForSale", x => x.Id);
+                    table.PrimaryKey("PK_ProductsForSale", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ObjectsForSale_ObjectTypes_ObjectTypeId",
-                        column: x => x.ObjectTypeId,
-                        principalTable: "ObjectTypes",
+                        name: "FK_ProductsForSale_ProductTypes_ProductTypeId",
+                        column: x => x.ProductTypeId,
+                        principalTable: "ProductTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ObjectsForSale_Users_UserId",
+                        name: "FK_ProductsForSale_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -92,7 +92,7 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Value = table.Column<int>(nullable: false),
                     AttributeTypeId = table.Column<int>(nullable: false),
-                    ObjectForSaleId = table.Column<int>(nullable: false)
+                    ProductForSaleId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -104,17 +104,17 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_AttributeValues_ObjectsForSale_ObjectForSaleId",
-                        column: x => x.ObjectForSaleId,
-                        principalTable: "ObjectsForSale",
+                        name: "FK_AttributeValues_ProductsForSale_ProductForSaleId",
+                        column: x => x.ProductForSaleId,
+                        principalTable: "ProductsForSale",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AttributeTypes_ObjectTypeId",
+                name: "IX_AttributeTypes_ProductTypeId",
                 table: "AttributeTypes",
-                column: "ObjectTypeId");
+                column: "ProductTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AttributeValues_AttributeTypeId",
@@ -122,18 +122,18 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                 column: "AttributeTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AttributeValues_ObjectForSaleId",
+                name: "IX_AttributeValues_ProductForSaleId",
                 table: "AttributeValues",
-                column: "ObjectForSaleId");
+                column: "ProductForSaleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ObjectsForSale_ObjectTypeId",
-                table: "ObjectsForSale",
-                column: "ObjectTypeId");
+                name: "IX_ProductsForSale_ProductTypeId",
+                table: "ProductsForSale",
+                column: "ProductTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ObjectsForSale_UserId",
-                table: "ObjectsForSale",
+                name: "IX_ProductsForSale_UserId",
+                table: "ProductsForSale",
                 column: "UserId");
         }
 
@@ -146,10 +146,10 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                 name: "AttributeTypes");
 
             migrationBuilder.DropTable(
-                name: "ObjectsForSale");
+                name: "ProductsForSale");
 
             migrationBuilder.DropTable(
-                name: "ObjectTypes");
+                name: "ProductTypes");
 
             migrationBuilder.DropTable(
                 name: "Users");

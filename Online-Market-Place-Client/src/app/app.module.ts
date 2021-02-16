@@ -34,11 +34,11 @@ import { InitialsPipe } from './pipes/initials.pipe';
 import { RegisterComponent } from './components/register/register.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { HeaderComponent } from './components/header/header.component';
-import { ObjectTypeComponent } from './components/object-type/object-type.component';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { ObjectTypeModal } from './modals/object-type-modal/object-type-modal';
+import { ProductTypeModal } from './modals/product-type-modal/product-type-modal';
 import { MatChipsModule } from '@angular/material/chips';
 import { DataTypePipe } from './pipes/data-type.pipe';
+import { ProductTypeComponent } from './components/product-type/product-type.component';
 
 @NgModule({
   declarations: [
@@ -51,8 +51,8 @@ import { DataTypePipe } from './pipes/data-type.pipe';
     InitialsPipe,
     RegisterComponent,
     HeaderComponent,
-    ObjectTypeComponent,
-    ObjectTypeModal,
+    ProductTypeComponent,
+    ProductTypeModal,
     DataTypePipe
   ],
   imports: [
@@ -90,7 +90,7 @@ import { DataTypePipe } from './pipes/data-type.pipe';
   entryComponents: [
     DeleteConfirmationModal,
     UserModal,
-    ObjectTypeModal
+    ProductTypeModal
   ],
   exports: [
     MatFormFieldModule,

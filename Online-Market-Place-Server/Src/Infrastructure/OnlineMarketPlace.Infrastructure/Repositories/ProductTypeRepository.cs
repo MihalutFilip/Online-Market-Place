@@ -7,23 +7,23 @@ using System.Text;
 
 namespace OnlineMarketPlace.Infrastructure.Repositories
 {
-    public class ObjectTypeRepository : Repository<ObjectType>, IObjectTypeRepository
+    public class ProductTypeRepository : Repository<ProductType>, IProductTypeRepository
     {
-        public ObjectTypeRepository(MarketPlaceContext context) : base(context)
+        public ProductTypeRepository(MarketPlaceContext context) : base(context)
         {
 
         }
 
-        public override IEnumerable<ObjectType> GetAll()
+        public override IEnumerable<ProductType> GetAll()
         {
             return (from o in _table
-                    select new ObjectType()
+                    select new ProductType()
                     {
                         Id = o.Id,
                         Name = o.Name,
                         Description = o.Description,
                         AttributeTypes = (from a in _context.AttributeTypes
-                                          where a.ObjectTypeId == o.Id
+                                          where a.ProductTypeId == o.Id
                                           select a).ToList()
                     });
 

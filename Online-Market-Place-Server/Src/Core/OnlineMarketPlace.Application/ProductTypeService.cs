@@ -9,36 +9,36 @@ namespace OnlineMarketPlace.Application
 {
     public class ProductTypeService : IProductTypeService
     {
-        private readonly IProductTypeRepository _objectTypeRepository;
+        private readonly IProductTypeRepository _productTypeRepository;
 
-        public ProductTypeService(IProductTypeRepository objectTypeRepository)
+        public ProductTypeService(IProductTypeRepository productTypeRepository)
         {
-            _objectTypeRepository = objectTypeRepository;
+            _productTypeRepository = productTypeRepository;
         }
 
         public void Delete(int id)
         {
-            _objectTypeRepository.Delete(id);
+            _productTypeRepository.Delete(id);
         }
 
         public IEnumerable<ProductType> GetAll()
         {
-            return _objectTypeRepository.GetAll();
+            return _productTypeRepository.GetAll();
         }
 
         public ProductType GetById(int id)
         {
-            return _objectTypeRepository.GetById(id);
+            return _productTypeRepository.GetById(id);
         }
 
-        public ProductType Insert(ProductType objectType)
+        public ProductType Insert(ProductType productType)
         {
-            return _objectTypeRepository.Insert(objectType);
+            return _productTypeRepository.Insert(productType);
         }
 
-        public ProductType Update(ProductType objectType)
+        public ProductType Update(ProductType productType)
         {
-            return _objectTypeRepository.Update(objectType);
+            return _productTypeRepository.Update(productType);
         }
     }
 }

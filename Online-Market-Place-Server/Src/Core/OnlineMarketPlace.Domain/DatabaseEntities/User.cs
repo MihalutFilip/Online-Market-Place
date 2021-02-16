@@ -10,6 +10,6 @@ namespace OnlineMarketPlace.Domain
         public string Email { get; set; }
         public Role Role { get; set; }
         public string Password { get; set; }
-        public ICollection<ProductForSale> ProductsForSale { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

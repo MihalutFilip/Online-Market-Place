@@ -15,40 +15,40 @@ namespace OnlineMarketPlace.WebApi.Controllers
     [Route("[controller]")]
     public class ProductTypeController : ControllerBase
     {
-        private readonly IProductTypeService _objectTypeService;
+        private readonly IProductTypeService _productTypeService;
 
-        public ProductTypeController(IProductTypeService objectTypeService)
+        public ProductTypeController(IProductTypeService productTypeService)
         {
-            _objectTypeService = objectTypeService;
+            _productTypeService = productTypeService;
         }
 
         [HttpGet]
         [Authorize(new[] { Role.Admin })]
         public IActionResult GetAll()
         {
-            var objectTypes = _objectTypeService.GetAll().Select(objectType => Mapper.Instance.ToObjectTypeViewModel(objectType));
-            return Ok(objectTypes);
+            var productTypes = _productTypeService.GetAll().Select(productType => Mapper.Instance.ToProductTypeViewModel(productType));
+            return Ok(productTypes);
         }
 
         [HttpPost]
         [Authorize(new[] { Role.Admin })]
-        public IActionResult Insert(ProductTypeViewModel objectType)
+        public IActionResult Insert(ProductTypeViewModel productType)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var savedObjectType = _objectTypeService.Insert(Mapper.Instance.ToObjectType(objectType));
-            return Ok(Mapper.Instance.ToObjectTypeViewModel(savedObjectType));
+            var savedProductType = _productTypeService.Insert(Mapper.Instance.ToProductType(productType));
+            return Ok(Mapper.Instance.ToProductTypeViewModel(savedProductType));
         }
 
-        [HttpDelete("{objectTypeId}")]
+        [HttpDelete("{productTypeId}")]
         [Authorize(new[] { Role.Admin })]
-        public IActionResult Delete(int objectTypeId)
+        public IActionResult Delete(int productTypeId)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            _objectTypeService.Delete(objectTypeId);
+            _productTypeService.Delete(productTypeId);
             return Ok();
         }
     }

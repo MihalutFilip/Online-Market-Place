@@ -39,6 +39,7 @@ import { ProductTypeModal } from './modals/product-type-modal/product-type-modal
 import { MatChipsModule } from '@angular/material/chips';
 import { DataTypePipe } from './pipes/data-type.pipe';
 import { ProductTypeComponent } from './components/product-type/product-type.component';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ProductTypeComponent } from './components/product-type/product-type.com
     HeaderComponent,
     ProductTypeComponent,
     ProductTypeModal,
-    DataTypePipe
+    DataTypePipe,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

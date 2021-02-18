@@ -6,9 +6,9 @@ using System.Text;
 
 namespace OnlineMarketPlace.Infrastructure.Repositories
 {
-    public class ProductForSaleRepository : Repository<ProductForSale>, IProductForSaleRepository
+    public class ProductRepository : Repository<Product>, IProductRepository
     {
-        public ProductForSaleRepository(MarketPlaceContext context) : base(context)
+        public ProductRepository(MarketPlaceContext context) : base(context)
         {
         }
     }

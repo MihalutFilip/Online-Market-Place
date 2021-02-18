@@ -9,8 +9,8 @@ namespace OnlineMarketPlace.Application.Interfaces
     {
         IEnumerable<ProductType> GetAll();
         ProductType GetById(int id);
-        ProductType Insert(ProductType objectType);
-        ProductType Update(ProductType objectType);
+        ProductType Insert(ProductType productType);
+        ProductType Update(ProductType productType);
         void Delete(int id);
     }
 }

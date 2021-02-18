@@ -47,25 +47,37 @@ namespace OnlineMarketPlace.WebApi.Helpers
             };
         }
 
-        public ProductTypeViewModel ToObjectTypeViewModel(ProductType objectType)
+        public ProductTypeViewModel ToProductTypeViewModel(ProductType productType)
         {
             return new ProductTypeViewModel()
             {
-                Id = objectType.Id,
-                Name = objectType.Name,
-                Description = objectType.Description,
-                AttributeTypes = objectType.AttributeTypes.Select(a => ToAttributeTypeViewModel(a)).ToList()
+                Id = productType.Id,
+                Name = productType.Name,
+                Description = productType.Description,
+                AttributeTypes = productType.AttributeTypes.Select(a => ToAttributeTypeViewModel(a)).ToList()
             };
         }
 
-        public ProductType ToObjectType(ProductTypeViewModel objectType)
+        public ProductType ToProductType(ProductTypeViewModel productType)
         {
             return new ProductType()
             {
-                Id = objectType.Id,
-                Name = objectType.Name,
-                Description = objectType.Description,
-                AttributeTypes = objectType.AttributeTypes.Select(a => ToAttributeType(a)).ToList()
+                Id = productType.Id,
+                Name = productType.Name,
+                Description = productType.Description,
+                AttributeTypes = productType.AttributeTypes.Select(a => ToAttributeType(a)).ToList()
+            };
+        }
+
+        public ProductViewModel ToProductViewModel(Product product)
+        {
+            return new ProductViewModel()
+            {
+                Id = product.Id,
+                Price = product.Price,
+                UserId = product.UserId,
+                ProductTypeId = product.ProductTypeId,
+                AttributeValues = product.AttributeValues.Select(a => ToAttributeTypeViewModel(a)).ToList()
             };
         }
 
@@ -88,5 +100,26 @@ namespace OnlineMarketPlace.WebApi.Helpers
                 DataType = attributeType.DataType
             };
         }
+
+        // TODO: To get decision of using attribute value view model as attribute value
+        //public AttributeValueViewModel ToAttributeViewModel(AttributeValue attributeValue)
+        //{
+        //    return new AttributeValueViewModel()
+        //    {
+        //        Id = attributeValue.Id,
+        //        Name = attributeType.Name,
+        //        DataType = attributeType.DataType
+        //    };
+        //}
+
+        //public AttributeType ToAttributeType(AttributeTypeViewModel attributeType)
+        //{
+        //    return new AttributeType()
+        //    {
+        //        Id = attributeType.Id,
+        //        Name = attributeType.Name,
+        //        DataType = attributeType.DataType
+        //    };
+        //}
     }
 }

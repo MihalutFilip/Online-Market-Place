@@ -7,10 +7,10 @@ namespace OnlineMarketPlace.Application.Interfaces
 {
     public interface IProductService
     {
-        IEnumerable<ProductForSale> GetAll();
-        ProductForSale GetById(int id);
-        ProductForSale Insert(ProductForSale objectType);
-        ProductForSale Update(ProductForSale objectType);
+        IEnumerable<Product> GetAll();
+        Product GetById(int id);
+        Product Insert(Product product);
+        Product Update(Product product);
         void Delete(int id);
     }
 }

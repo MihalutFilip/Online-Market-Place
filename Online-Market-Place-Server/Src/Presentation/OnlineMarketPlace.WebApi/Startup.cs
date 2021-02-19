@@ -46,10 +46,12 @@ namespace WebApi
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
             services.AddScoped<IAttributeTypeRepository, AttributeTypeRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
             services.AddScoped<IAuthorizeService, AuthorizeService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProductTypeService, ProductTypeService>();
+            services.AddScoped<IProductService, ProductService>();
 
             services.AddDbContext<MarketPlaceContext>(options => options.UseSqlServer("Data Source=.;Initial Catalog=MarketPlace;Integrated Security=True"));
         }

@@ -8,7 +8,6 @@ import { AttributeType } from '../models/attribute-type';
 export class DataTypePipe implements PipeTransform {
 
   transform(attributeTypes, dataType): AttributeType[] {
-    console.log('pipe');
     if(!attributeTypes || !dataType)
       return attributeTypes;
 

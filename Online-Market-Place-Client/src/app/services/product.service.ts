@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ProductForSale } from '../models/product-for-sale';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +13,15 @@ export class ProductService {
   
   constructor(private httpClient: HttpClient) { }
 
-  public getProducts(): Observable<ProductForSale[]> {
-    return this.httpClient.get<ProductForSale[]>(`${this.baseApiUrl}`);
+  public getProducts(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.baseApiUrl}`);
   }
 
-  public saveProduct(product: ProductForSale): Observable<ProductForSale> {
-    return this.httpClient.post<ProductForSale>(`${this.baseApiUrl}`, product, { headers: this.headers });
+  public saveProduct(product: Product): Observable<Product> {
+    return this.httpClient.post<Product>(`${this.baseApiUrl}`, product, { headers: this.headers });
   }
 
   public removeProduct(productId: Number): Observable<any> {
-    return this.httpClient.delete<ProductForSale>(`${this.baseApiUrl}/${productId}`);
+    return this.httpClient.delete<Product>(`${this.baseApiUrl}/${productId}`);
   }
 }

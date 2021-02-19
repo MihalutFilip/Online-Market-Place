@@ -7,7 +7,7 @@ namespace OnlineMarketPlace.Domain
 {
     public class AttributeValue : Entity
     {
-        public int Value { get; set; }
+        public string Value { get; set; }
 
         public AttributeType AttributeType { get; set; }
         public int AttributeTypeId { get; set; }

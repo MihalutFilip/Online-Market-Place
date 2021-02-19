@@ -18,7 +18,6 @@ export class UsersService {
   }
 
   public saveUser(user: User): Observable<any> {
-    console.log(user);
     return this.httpClient.post<any>(`${this.baseApiUrl}`, user, { headers: this.headers });
   }
 

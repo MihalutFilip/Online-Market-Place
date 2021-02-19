@@ -3,7 +3,7 @@ import { AttributeValue } from "./attribute-value";
 import { ProductType } from "./product-type";
 import { User } from "./user";
 
-export class ProductForSale {
+export class Product {
     id: number;
     price: number;
     user: User;

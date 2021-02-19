@@ -49,8 +49,6 @@ export class ProductTypeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(productType => {
       if (productType) {
         this.productTypeService.saveProductType(productType).subscribe(savedProductType => {
-      console.log(savedProductType);
-
           this.productTypes.push(savedProductType);
           this.filteredProductTypes = this.productTypes;
           this.snackBar.open("The product type was saved", '', { duration: Constants.SECONDS_FOR_SNACKBAR });

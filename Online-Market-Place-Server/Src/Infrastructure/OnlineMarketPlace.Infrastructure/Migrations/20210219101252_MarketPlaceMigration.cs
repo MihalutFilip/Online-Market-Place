@@ -2,7 +2,7 @@
 
 namespace OnlineMarketPlace.Infrastructure.Migrations
 {
-    public partial class OnlineMarketPlaceMigration : Migration
+    public partial class MarketPlaceMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -58,7 +58,7 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductsForSale",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -69,15 +69,15 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductsForSale", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProductsForSale_ProductTypes_ProductTypeId",
+                        name: "FK_Products_ProductTypes_ProductTypeId",
                         column: x => x.ProductTypeId,
                         principalTable: "ProductTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ProductsForSale_Users_UserId",
+                        name: "FK_Products_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -92,7 +92,7 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Value = table.Column<int>(nullable: false),
                     AttributeTypeId = table.Column<int>(nullable: false),
-                    ProductForSaleId = table.Column<int>(nullable: false)
+                    ProductId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -104,9 +104,9 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_AttributeValues_ProductsForSale_ProductForSaleId",
-                        column: x => x.ProductForSaleId,
-                        principalTable: "ProductsForSale",
+                        name: "FK_AttributeValues_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -122,18 +122,18 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                 column: "AttributeTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AttributeValues_ProductForSaleId",
+                name: "IX_AttributeValues_ProductId",
                 table: "AttributeValues",
-                column: "ProductForSaleId");
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductsForSale_ProductTypeId",
-                table: "ProductsForSale",
+                name: "IX_Products_ProductTypeId",
+                table: "Products",
                 column: "ProductTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductsForSale_UserId",
-                table: "ProductsForSale",
+                name: "IX_Products_UserId",
+                table: "Products",
                 column: "UserId");
         }
 
@@ -146,7 +146,7 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                 name: "AttributeTypes");
 
             migrationBuilder.DropTable(
-                name: "ProductsForSale");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "ProductTypes");

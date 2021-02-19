@@ -13,19 +13,19 @@ namespace OnlineMarketPlace.WebApi.Controllers
     [Route("[controller]")]
     public class ProductController : ControllerBase
     {
-        private readonly IProductService _productService;
+        private readonly IProductService _productsService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productsService)
         {
-            _productService = productService;
+            _productsService = productsService;
         }
 
         [HttpGet]
         [Authorize(new[] { Role.Provider })]
         public IActionResult GetAll()
         {
-            var productTypes = _productService.GetAll().Select(productType => Mapper.Instance.ToObjectTypeViewModel(productType));
-            return Ok(productTypes);
+            var products = _productsService.GetAll().Select(product => Mapper.Instance.ToProductViewModel(product));
+            return Ok(products);
         }
     }
 }

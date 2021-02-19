@@ -1,4 +1,5 @@
-﻿using OnlineMarketPlace.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineMarketPlace.Domain;
 using OnlineMarketPlace.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -16,17 +17,7 @@ namespace OnlineMarketPlace.Infrastructure.Repositories
 
         public override IEnumerable<ProductType> GetAll()
         {
-            return (from o in _table
-                    select new ProductType()
-                    {
-                        Id = o.Id,
-                        Name = o.Name,
-                        Description = o.Description,
-                        AttributeTypes = (from a in _context.AttributeTypes
-                                          where a.ProductTypeId == o.Id
-                                          select a).ToList()
-                    });
-
+            return _context.ProductTypes.Include("AttributeTypes").ToList();
         }
     }
 }

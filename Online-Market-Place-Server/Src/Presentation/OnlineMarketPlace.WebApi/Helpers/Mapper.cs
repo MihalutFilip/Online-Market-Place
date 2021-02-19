@@ -77,7 +77,7 @@ namespace OnlineMarketPlace.WebApi.Helpers
                 Price = product.Price,
                 UserId = product.UserId,
                 ProductTypeId = product.ProductTypeId,
-                AttributeValues = product.AttributeValues.Select(a => ToAttributeTypeViewModel(a)).ToList()
+                AttributeValues = product.AttributeValues.Select(a => ToAttributeValueViewModel(a)).ToList()
             };
         }
 
@@ -101,25 +101,24 @@ namespace OnlineMarketPlace.WebApi.Helpers
             };
         }
 
-        // TODO: To get decision of using attribute value view model as attribute value
-        //public AttributeValueViewModel ToAttributeViewModel(AttributeValue attributeValue)
-        //{
-        //    return new AttributeValueViewModel()
-        //    {
-        //        Id = attributeValue.Id,
-        //        Name = attributeType.Name,
-        //        DataType = attributeType.DataType
-        //    };
-        //}
+        public AttributeValueViewModel ToAttributeValueViewModel(AttributeValue attributeValue)
+        {
+            return new AttributeValueViewModel()
+            {
+                Id = attributeValue.Id,
+                AttributeType = ToAttributeTypeViewModel(attributeValue.AttributeType),
+                Value = attributeValue.Value
+            };
+        }
 
-        //public AttributeType ToAttributeType(AttributeTypeViewModel attributeType)
-        //{
-        //    return new AttributeType()
-        //    {
-        //        Id = attributeType.Id,
-        //        Name = attributeType.Name,
-        //        DataType = attributeType.DataType
-        //    };
-        //}
+        public AttributeValue ToAttributeValue(AttributeValueViewModel attributeType)
+        {
+            return new AttributeValue()
+            {
+                Id = attributeType.Id,
+                AttributeType = ToAttributeType(attributeType.AttributeType),
+                Value = attributeType.Value
+            };
+        }
     }
 }

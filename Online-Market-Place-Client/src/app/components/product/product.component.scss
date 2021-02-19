@@ -9,11 +9,22 @@
 
 .mat-card {
     height: 100%;
+    background: #1e1f26;
+    color: white;
+
+    .mat-card-subtitle {
+        color: white;
+    }
+
+    button {
+        color: #1e1f26;
+        background: #800080;
+        border-radius: 18px;
+        text-align: center;
+    }
 }
 
 .add-card {
-    .mat-card-content {
-    }
     button {
         width: 100px;
         margin: -20px -50px;

@@ -6,5 +6,6 @@ export class User {
     email: string;
     jwtToken: string;
     role: Role;
+    colorCode: string;
     password: string;
 }

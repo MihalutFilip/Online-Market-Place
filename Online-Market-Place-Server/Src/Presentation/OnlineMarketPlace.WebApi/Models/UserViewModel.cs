@@ -18,5 +18,7 @@ namespace OnlineMarketPlace.WebApi.Models
         public string Username { get; set; }
         [Required]
         public Role Role { get; set; }
+        [Required]
+        public string ColorCode { get; set; }
     }
 }

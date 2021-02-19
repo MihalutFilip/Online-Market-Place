@@ -31,6 +31,7 @@ namespace OnlineMarketPlace.WebApi.Helpers
                 Email = user.Email,
                 Role = user.Role,
                 Username = user.Username,
+                ColorCode = user.ColorCode,
                 JwtToken = jwtToken
             };
         }
@@ -43,7 +44,8 @@ namespace OnlineMarketPlace.WebApi.Helpers
                 Email = user.Email,
                 Role = user.Role,
                 Username = user.Username,
-                Password = user.Password
+                Password = user.Password,
+                ColorCode = user.ColorCode
             };
         }
 

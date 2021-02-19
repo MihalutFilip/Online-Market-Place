@@ -8,7 +8,9 @@ namespace OnlineMarketPlace.Domain
 {
     public class AttributeType : Entity
     {
+        [Required]
         public string Name { get; set; }
+        [Required]
         public DataType DataType { get; set; }
 
         public ProductType ProductType { get; set; }

@@ -8,6 +8,7 @@ import { UserModal } from 'src/app/modals/user-modal/user-modal';
 import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users.service';
 import { Constants } from 'src/app/utils/constants';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-users',
@@ -66,6 +67,7 @@ export class UsersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(user => {
       if (user) {
+        (<User> user).colorCode = Utils.getRandomColor();
         this.usersService.saveUser(user).subscribe(savedUser => {
           this.users.push(savedUser);
           this.dataSource = new MatTableDataSource(this.users);

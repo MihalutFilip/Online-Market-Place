@@ -1,5 +1,15 @@
 .mat-card {
     height: 100%;
+    background: #1e1f26;
+    color: white;
+
+    .mat-card-subtitle {
+        color: white;
+    }
+
+    button {
+        color: #800080 !important;
+    }
 }
 
 .mat-card-actions {
@@ -19,7 +29,6 @@
 .header-image {
     width: 40px;
     height: 40px;
-    background: gray;
     border-radius: 50%;
     text-align: center;
     font-size: 20px;

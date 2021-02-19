@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineMarketPlace.Infrastructure;
 
 namespace OnlineMarketPlace.Infrastructure.Migrations
 {
     [DbContext(typeof(MarketPlaceContext))]
-    partial class MarketPlaceContextModelSnapshot : ModelSnapshot
+    [Migration("20210219164709_AddImageBase64Column")]
+    partial class AddImageBase64Column
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

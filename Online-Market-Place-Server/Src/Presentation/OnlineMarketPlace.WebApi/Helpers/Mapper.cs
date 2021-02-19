@@ -75,7 +75,7 @@ namespace OnlineMarketPlace.WebApi.Helpers
             {
                 Id = product.Id,
                 Price = product.Price,
-                UserId = product.UserId,
+                User = ToUserViewModel(product.User),
                 ProductTypeId = product.ProductTypeId,
                 AttributeValues = product.AttributeValues.Select(a => ToAttributeValueViewModel(a)).ToList()
             };

@@ -1,1 +1,6 @@
-<p>product works!</p>
+<div class="parent-container">
+    <div class="product-item" *ngFor="let product of products">
+        <app-product-item  [product]="product"></app-product-item>
+    </div>
+</div>
+

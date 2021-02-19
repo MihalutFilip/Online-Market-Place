@@ -2,5 +2,10 @@
     <div class="product-item" *ngFor="let product of products">
         <app-product-item  [product]="product"></app-product-item>
     </div>
+    <div class="product-item">
+        <mat-card class="add-card">
+            <button mat-button>Add product</button>
+          </mat-card>
+    </div>
 </div>
 

@@ -1,10 +1,14 @@
+.mat-toolbar {
+  box-shadow: 1px 9px 10px -3px grey;
+}
+
 .profile-menu-topbar {
     width: 270px;
     height: 64px;
     display: flex;
     align-items: center;
     flex-direction: row;
-  
+
     .mat-menu-item .mat-icon {
       margin-right: 12px;
     }

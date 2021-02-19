@@ -1,9 +1,24 @@
 .product-item {
     width: 25% !important;
-    margin-left: 30px;
-    height: 50% !important;
+    margin-right: 30px;
 }
 
 .parent-container {
     display: flex;
+}
+
+.mat-card {
+    height: 100%;
+}
+
+.add-card {
+    .mat-card-content {
+    }
+    button {
+        width: 100px;
+        margin: -20px -50px;
+        position: relative;
+        top: 50%;
+        left: 50%;
+    }
 }

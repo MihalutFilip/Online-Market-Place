@@ -1,6 +1,20 @@
-// .mat-card {
-//     width: 700px !important;
-// }
+.mat-card {
+    height: 100%;
+}
+
+.mat-card-actions {
+    bottom: 16px;
+    position: absolute;
+    width: 96%;
+
+    button {
+        float: right;
+    }
+}
+
+.mat-card-content {
+    margin-bottom: 40px;
+}
 
 .header-image {
     width: 40px;

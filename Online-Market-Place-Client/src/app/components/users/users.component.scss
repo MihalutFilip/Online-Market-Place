@@ -1,11 +1,13 @@
 .mat-table {
     width: 100%;
+    background: #1e1f26;
 }
 
 .add-user-button {
     margin-bottom: 15px;
     float: right;
     margin-top: -38px;
+    background: #800080;
 }
 
 .mat-column-edit {
@@ -14,4 +16,9 @@
 
 .input-group {
     width: 15% !important;
+}
+
+.btn-secondary {
+    background-color: #1e1f26;
+    border-color: #1e1f26;
 }

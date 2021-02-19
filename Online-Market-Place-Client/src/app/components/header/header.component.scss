@@ -3,12 +3,24 @@
   background: #1e1f26;
 }
 
+::ng-deep .mat-menu-panel {
+  background: #1e1f26 !important;
+  span {
+    color: white;
+  }
+
+  .mat-icon {
+    color: #800080;
+  }
+}
+
 .profile-menu-topbar {
     width: 270px;
     height: 64px;
     display: flex;
     align-items: center;
     flex-direction: row;
+    background: #1e1f26;
 
     .mat-menu-item .mat-icon {
       margin-right: 12px;
@@ -30,7 +42,7 @@
   
     .info-profile-menu-topbar {
       margin-left: 12px;
-      color: gray;
+      color: white;
   
       .display-name-profile-menu-topbar {
         font-size: 16px;

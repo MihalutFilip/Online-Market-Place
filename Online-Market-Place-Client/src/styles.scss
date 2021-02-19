@@ -1,8 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-
 .red-snackbar {
-    background: #DC143C;
+    background: #e62020;
 }
 
 button:focus {
@@ -11,4 +9,12 @@ button:focus {
 
 body {
     background: black;
+}
+
+.mat-dialog-container {
+    background: #1e1f26;
+}
+
+.mat-expansion-panel {
+    background: #1e1f26;
 }

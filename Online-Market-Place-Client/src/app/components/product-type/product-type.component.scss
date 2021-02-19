@@ -6,6 +6,12 @@
 .add-product-type-button {
     float: right;
     margin-top: -50px;
+    background: #800080;
+}
+
+.btn-secondary {
+    background-color: #1e1f26;
+    border-color: #1e1f26;
 }
 
 ::ng-deep .mat-expansion-panel-header-title {

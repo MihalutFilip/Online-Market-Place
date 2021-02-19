@@ -9,8 +9,6 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductComponent implements OnInit {
   public products: Product[];
-  url: string | ArrayBuffer;
-
 
   constructor(private productService: ProductService) { }
 
@@ -19,17 +17,8 @@ export class ProductComponent implements OnInit {
       this.products = products;
     });
   }
-  onSelectFile(event) { // called each time file input changes
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
 
-        reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-        reader.onload = (event) => { // called once readAsDataURL is completed
-          this.url = event.target.result;
-          console.log(this.url);
-        }
-      }
+  addNewProduct() {
+    this.products.push(new Product());
   }
-
 }

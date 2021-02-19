@@ -1,19 +1,24 @@
 <mat-card class="example-card">
-  <mat-card-header>
+  <mat-card-header *ngIf="actionType != ActionType.Add">
     <div mat-card-avatar class="header-image" [style.background]="product.user.colorCode">{{product.user.username | initials}}</div>
     <mat-card-title>{{product.user.username}}</mat-card-title>
     <mat-card-subtitle>{{product.user.email}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="https://i.gadgets360cdn.com/large/mi_gaming_laptop_2019_image_1565003115644.jpg?output-quality=80&output-format=webp">
+  <img *ngIf="actionType != ActionType.Add" mat-card-image src="https://i.gadgets360cdn.com/large/mi_gaming_laptop_2019_image_1565003115644.jpg?output-quality=80&output-format=webp">
   <mat-card-content>
-    <p>
-      <b>Price</b>: {{product.price}} $
-    </p>
-    <p *ngFor="let attribute of product.attributeValues">
-      <b>{{attribute.attributeType.name}}</b>: {{attribute.value}}
-    </p>
+    <div *ngIf="actionType == ActionType.View">
+      <p>
+        <b>Price</b>: {{product.price}} $
+      </p>
+      <p *ngFor="let attribute of product.attributeValues">
+        <b>{{attribute.attributeType.name}}</b>: {{attribute.value}}
+      </p>
+    </div>
+    <div *ngIf="actionType == ActionType.Add">
+      <input type='file' (change)="onSelectFile($event)">
+    </div>
   </mat-card-content>
-  <mat-card-actions>
+  <mat-card-actions *ngIf="actionType == ActionType.View">
     <button mat-button (click)="deleteProductItem()">
       <span class="material-icons">
         delete

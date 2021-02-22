@@ -1,12 +1,12 @@
 <form class="product-type-form" *ngIf="productType">
     <p>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
             <input type="text" matInput [(ngModel)]="productType.name" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
     </p>
     <p>
-        <mat-form-field >
+        <mat-form-field appearance="outline">
             <mat-label>Description</mat-label>
             <input type="text" matInput [(ngModel)]="productType.description" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
@@ -15,7 +15,7 @@
         Attribute Types
     </p>
     <p>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <mat-label>String type</mat-label>
             <mat-chip-list #stringChipList>
                 <mat-chip *ngFor="let attributeType of attributeTypes[0]" [removable]="true"
@@ -29,7 +29,7 @@
         </mat-form-field>
     </p>
     <p>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <mat-label>Integer type</mat-label>
             <mat-chip-list #integerChipList>
                 <mat-chip *ngFor="let attributeType of attributeTypes[1]" [removable]="true"
@@ -43,7 +43,7 @@
         </mat-form-field>
     </p>
     <p>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <mat-label>Float type</mat-label>
             <mat-chip-list #floatChipList>
                 <mat-chip *ngFor="let attributeType of attributeTypes[2]" [removable]="true"
@@ -57,7 +57,7 @@
         </mat-form-field>
     </p>
     <p>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <mat-label>Boolean type</mat-label>
             <mat-chip-list #booleanChipList>
                 <mat-chip *ngFor="let attributeType of attributeTypes[3]" [removable]="true"

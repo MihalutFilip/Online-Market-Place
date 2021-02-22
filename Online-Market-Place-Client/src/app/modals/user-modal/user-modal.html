@@ -1,12 +1,12 @@
 <form class="example-form" *ngIf="user">
     <p>
-        <mat-form-field class="example-full-width">
+        <mat-form-field appearance="outline" class="example-full-width">
             <mat-label>Username</mat-label>
             <input type="text" matInput [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
     </p>
     <p>
-        <mat-form-field class="example-full-width">
+        <mat-form-field appearance="outline" class="example-full-width">
             <mat-label>Email</mat-label>
             <input type="text" matInput [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}">
         </mat-form-field>

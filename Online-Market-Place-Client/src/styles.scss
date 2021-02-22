@@ -18,3 +18,51 @@ body {
 .mat-expansion-panel {
     background: #1e1f26;
 }
+
+.mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: white !important;
+}
+
+.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: white !important;
+}
+
+.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: white !important;
+}
+
+.mat-form-field-outline {
+    color: white !important;
+}
+
+.mat-input-element {
+    caret-color: white !important;
+}
+
+/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #1e1f26 inset !important;
+}
+
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+    -webkit-text-fill-color: white !important;
+}
+
+.custom-color.mat-select-value {
+    color: green !important;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: black !important;
+}
+
+.mat-select-arrow {
+    color: white !important;
+}

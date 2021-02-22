@@ -9,3 +9,7 @@
 .attribute-type-title{
     font-weight: bold;
 }
+
+::ng-deep .mat-flat-button:not(:disabled) {
+    background: #800080 !important;
+}

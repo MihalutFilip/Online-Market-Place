@@ -63,6 +63,10 @@ export class UsersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(response => {
       if (response) {
         this.usersService.removeUser(user.id).subscribe(_ => {
+          console.log('Here');
+          let indexOfObject = this.users.indexOf(user);
+          this.users.splice(indexOfObject, 1);
+          this.dataSource = new MatTableDataSource(this.users);
           this.snackBar.open("The user was deleted", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
         });
       }

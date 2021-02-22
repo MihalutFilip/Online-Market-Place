@@ -19,7 +19,7 @@ export class UsersComponent implements OnInit {
   public dataSource;
   public users: User[] = [];
   public filterSearch: string;
-  public displayedColumns: string[] = ['username', 'email', 'role', 'edit'];
+  public displayedColumns: string[] = ['username', 'email', 'role', 'edit', 'remove'];
   public Role = Role;
 
   constructor(private usersService: UsersService, private snackBar: MatSnackBar,
@@ -52,6 +52,18 @@ export class UsersComponent implements OnInit {
           this.users[indexOfUser] = user;
           this.dataSource = new MatTableDataSource(this.users);
           this.snackBar.open("The user was updated", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
+        });
+      }
+    });
+  }
+
+  removeUser(user: User) {
+    let dialogRef = this.dialog.open(DeleteConfirmationModal);
+
+    dialogRef.afterClosed().subscribe(response => {
+      if (response) {
+        this.usersService.removeUser(user.id).subscribe(_ => {
+          this.snackBar.open("The user was deleted", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
         });
       }
     });

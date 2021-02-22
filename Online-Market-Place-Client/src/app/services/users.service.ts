@@ -28,4 +28,8 @@ export class UsersService {
   public registerUser(user: User): Observable<any> {
     return this.httpClient.post<any>(`${this.baseApiUrl}/register`, user, { headers: this.headers });
   }
+
+  public removeUser(userId: number): Observable<any> {
+    return this.httpClient.delete<any>(`${this.baseApiUrl}/${userId}`);
+  }
 }

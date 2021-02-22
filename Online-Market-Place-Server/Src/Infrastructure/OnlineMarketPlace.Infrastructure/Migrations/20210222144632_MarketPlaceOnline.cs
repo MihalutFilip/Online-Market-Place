@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OnlineMarketPlace.Infrastructure.Migrations
 {
-    public partial class MarketPlaceMigration : Migration
+    public partial class MarketPlaceOnline : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +13,8 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,10 +27,11 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Username = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
+                    Username = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
                     Role = table.Column<int>(nullable: false),
-                    Password = table.Column<string>(nullable: true)
+                    Password = table.Column<string>(nullable: false),
+                    ColorCode = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,7 +44,7 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     DataType = table.Column<int>(nullable: false),
                     ProductTypeId = table.Column<int>(nullable: false)
                 },
@@ -64,6 +66,7 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ImageBase64 = table.Column<byte[]>(nullable: true),
                     UserId = table.Column<int>(nullable: false),
                     ProductTypeId = table.Column<int>(nullable: false)
                 },
@@ -74,14 +77,13 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                         name: "FK_Products_ProductTypes_ProductTypeId",
                         column: x => x.ProductTypeId,
                         principalTable: "ProductTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Products_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,7 +92,7 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Value = table.Column<int>(nullable: false),
+                    Value = table.Column<string>(nullable: false),
                     AttributeTypeId = table.Column<int>(nullable: false),
                     ProductId = table.Column<int>(nullable: false)
                 },
@@ -101,14 +103,12 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                         name: "FK_AttributeValues_AttributeTypes_AttributeTypeId",
                         column: x => x.AttributeTypeId,
                         principalTable: "AttributeTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_AttributeValues_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(

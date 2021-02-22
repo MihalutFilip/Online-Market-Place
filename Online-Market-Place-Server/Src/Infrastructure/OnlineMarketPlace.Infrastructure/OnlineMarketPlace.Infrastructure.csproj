@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20210219101204_MarketPlaceMigraton.cs" />
-    <Compile Remove="Migrations\20210219101204_MarketPlaceMigraton.Designer.cs" />
+    <Compile Remove="Migrations\20210222144454_MarketPlaceMigration.cs" />
+    <Compile Remove="Migrations\20210222144454_MarketPlaceMigration.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +20,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\OnlineMarketPlace.Domain\OnlineMarketPlace.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

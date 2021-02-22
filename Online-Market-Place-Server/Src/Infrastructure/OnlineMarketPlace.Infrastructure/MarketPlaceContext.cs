@@ -28,19 +28,19 @@ namespace OnlineMarketPlace.Infrastructure
             modelBuilder.Entity<Product>()
                 .HasOne(x => x.ProductType)
                 .WithMany(x => x.Products)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             // one to many attribute type - attribute value
             modelBuilder.Entity<AttributeValue>()
                 .HasOne(x => x.AttributeType)
                 .WithMany(x => x.AttributeValues)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             // one to many object for sale - attribute value
             modelBuilder.Entity<AttributeValue>()
                 .HasOne(x => x.Product)
                 .WithMany(x => x.AttributeValues)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             // one to many object type - attribute type
             modelBuilder.Entity<AttributeType>()

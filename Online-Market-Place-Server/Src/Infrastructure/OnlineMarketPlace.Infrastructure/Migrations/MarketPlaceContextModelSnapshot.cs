@@ -162,13 +162,13 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                     b.HasOne("OnlineMarketPlace.Domain.AttributeType", "AttributeType")
                         .WithMany("AttributeValues")
                         .HasForeignKey("AttributeTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("OnlineMarketPlace.Domain.Product", "Product")
                         .WithMany("AttributeValues")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -177,7 +177,7 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                     b.HasOne("OnlineMarketPlace.Domain.ProductType", "ProductType")
                         .WithMany("Products")
                         .HasForeignKey("ProductTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("OnlineMarketPlace.Domain.User", "User")

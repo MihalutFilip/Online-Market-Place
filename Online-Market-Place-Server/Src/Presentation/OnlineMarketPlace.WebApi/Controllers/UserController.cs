@@ -90,5 +90,16 @@ namespace OnlineMarketPlace.WebApi.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpDelete("{userId}")]
+        [Authorize(new[] { Role.Admin })]
+        public IActionResult Delete(int userId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            _userService.Delete(userId);
+            return Ok();
+        }
     }
 }

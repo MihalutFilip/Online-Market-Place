@@ -10,8 +10,8 @@ using OnlineMarketPlace.Infrastructure;
 namespace OnlineMarketPlace.Infrastructure.Migrations
 {
     [DbContext(typeof(MarketPlaceContext))]
-    [Migration("20210219164709_AddImageBase64Column")]
-    partial class AddImageBase64Column
+    [Migration("20210222144632_MarketPlaceOnline")]
+    partial class MarketPlaceOnline
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -164,13 +164,13 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                     b.HasOne("OnlineMarketPlace.Domain.AttributeType", "AttributeType")
                         .WithMany("AttributeValues")
                         .HasForeignKey("AttributeTypeId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("OnlineMarketPlace.Domain.Product", "Product")
                         .WithMany("AttributeValues")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -179,13 +179,13 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                     b.HasOne("OnlineMarketPlace.Domain.ProductType", "ProductType")
                         .WithMany("Products")
                         .HasForeignKey("ProductTypeId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("OnlineMarketPlace.Domain.User", "User")
                         .WithMany("Products")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

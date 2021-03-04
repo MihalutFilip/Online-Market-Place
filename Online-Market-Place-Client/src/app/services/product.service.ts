@@ -9,7 +9,7 @@ import { Product } from '../models/product';
 })
 export class ProductService {
   private baseApiUrl = `${environment.baseApiUrl}/product`;
-  private headers = new HttpHeaders({ 'Content-': 'application/json' });
+  private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   
   constructor(private httpClient: HttpClient) { }
 

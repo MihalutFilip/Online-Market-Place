@@ -24,8 +24,7 @@ export class AddProductItemComponent implements OnInit {
 
   addNewProduct() {
     this.product = <Product> {
-      id: null,
-      user: this.localStorage.getLoggedInUser()
+      userId: this.localStorage.getLoggedInUser().id
     };
   }
 
@@ -44,7 +43,6 @@ export class AddProductItemComponent implements OnInit {
 
   resetAttributeValues() {
     this.product.attributeValues = this.product.productType.attributeTypes.map(atrributeType => <AttributeValue> {
-      id: null,
       attributeType: atrributeType,
     });
 
@@ -54,6 +52,5 @@ export class AddProductItemComponent implements OnInit {
   saveProduct() {
     console.log(this.product);
     this.addProduct.emit(this.product);
-    this.product = null;
   }
 }

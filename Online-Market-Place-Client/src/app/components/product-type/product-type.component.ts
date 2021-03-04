@@ -48,6 +48,7 @@ export class ProductTypeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(productType => {
       if (productType) {
+        console.log(productType);
         this.productTypeService.saveProductType(productType).subscribe(savedProductType => {
           this.productTypes.push(savedProductType);
           this.filteredProductTypes = this.productTypes;

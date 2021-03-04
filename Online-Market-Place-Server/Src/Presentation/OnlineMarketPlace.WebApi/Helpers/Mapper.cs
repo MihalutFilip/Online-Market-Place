@@ -89,7 +89,8 @@ namespace OnlineMarketPlace.WebApi.Helpers
             {
                 Id = product.Id,
                 Price = product.Price,
-                User = ToUser(product.User),
+                User = product.User != null ? ToUser(product.User) : null,
+                UserId = product.UserId,
                 ProductTypeId = product.ProductTypeId,
                 AttributeValues = product.AttributeValues.Select(a => ToAttributeValue(a)).ToList()
             };
@@ -125,13 +126,13 @@ namespace OnlineMarketPlace.WebApi.Helpers
             };
         }
 
-        public AttributeValue ToAttributeValue(AttributeValueViewModel attributeType)
+        public AttributeValue ToAttributeValue(AttributeValueViewModel attributeValue)
         {
             return new AttributeValue()
             {
-                Id = attributeType.Id,
-                AttributeType = ToAttributeType(attributeType.AttributeType),
-                Value = attributeType.Value
+                Id = attributeValue.Id,
+                AttributeTypeId = attributeValue.AttributeType != null ? attributeValue.AttributeType.Id : attributeValue.AttributeTypeId,
+                Value = attributeValue.Value
             };
         }
     }

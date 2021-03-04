@@ -33,6 +33,9 @@ namespace OnlineMarketPlace.WebApi.Controllers
         [Authorize(new[] { Role.Provider })]
         public IActionResult Insert(ProductViewModel product)
         {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
             var savedProduct = _productsService.Insert(Mapper.Instance.ToProduct(product));
             return Ok(savedProduct);
         }

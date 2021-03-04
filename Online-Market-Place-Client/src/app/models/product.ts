@@ -7,6 +7,7 @@ export class Product {
     id: number;
     price: number;
     user: User;
+    userId: number;
     productType: ProductType;
     productTypeId: number;
     attributeValues: AttributeValue[];

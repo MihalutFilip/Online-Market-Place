@@ -11,5 +11,6 @@ namespace OnlineMarketPlace.WebApi.Models
         public int Id { get; set; }
         public string Value { get; set; }
         public AttributeTypeViewModel AttributeType { get; set; }
+        public int AttributeTypeId { get; set; }
     }
 }

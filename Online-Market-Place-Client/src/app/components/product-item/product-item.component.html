@@ -7,15 +7,13 @@
   <img *ngIf="actionType != ActionType.Add" mat-card-image src="https://i.gadgets360cdn.com/large/mi_gaming_laptop_2019_image_1565003115644.jpg?output-quality=80&output-format=webp">
   <mat-card-content>
     <div *ngIf="actionType == ActionType.View">
+      <!-- View content -->
       <p>
         <b>Price</b>: {{product.price}} $
       </p>
       <p *ngFor="let attribute of product.attributeValues">
         <b>{{attribute.attributeType.name}}</b>: {{attribute.value}}
       </p>
-    </div>
-    <div *ngIf="actionType == ActionType.Add">
-      <input type='file' (change)="onSelectFile($event)">
     </div>
   </mat-card-content>
   <mat-card-actions *ngIf="actionType == ActionType.View">

@@ -41,6 +41,7 @@ import { DataTypePipe } from './pipes/data-type.pipe';
 import { ProductTypeComponent } from './components/product-type/product-type.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
+import { AddProductItemComponent } from './components/add-product-item/add-product-item.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     ProductTypeModal,
     DataTypePipe,
     ProductComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    AddProductItemComponent
   ],
   imports: [
     BrowserModule,

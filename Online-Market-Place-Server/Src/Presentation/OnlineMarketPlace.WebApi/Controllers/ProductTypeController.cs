@@ -23,7 +23,7 @@ namespace OnlineMarketPlace.WebApi.Controllers
         }
 
         [HttpGet]
-        [Authorize(new[] { Role.Admin })]
+        [Authorize(new[] { Role.Admin, Role.Provider })]
         public IActionResult GetAll()
         {
             var productTypes = _productTypeService.GetAll().Select(productType => Mapper.Instance.ToProductTypeViewModel(productType));

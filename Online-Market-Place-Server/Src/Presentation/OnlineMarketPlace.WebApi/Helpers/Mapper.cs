@@ -83,6 +83,18 @@ namespace OnlineMarketPlace.WebApi.Helpers
             };
         }
 
+        public Product ToProduct(ProductViewModel product)
+        {
+            return new Product()
+            {
+                Id = product.Id,
+                Price = product.Price,
+                User = ToUser(product.User),
+                ProductTypeId = product.ProductTypeId,
+                AttributeValues = product.AttributeValues.Select(a => ToAttributeValue(a)).ToList()
+            };
+        }
+
         public AttributeTypeViewModel ToAttributeTypeViewModel(AttributeType attributeType)
         {
             return new AttributeTypeViewModel()

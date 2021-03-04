@@ -3,6 +3,6 @@
         <app-product-item [product]="product"></app-product-item>
     </div>
     <div class="product-item">
-        <app-add-product-item *ngIf="productTypes" [productTypes]="productTypes"></app-add-product-item>
+        <app-add-product-item *ngIf="productTypes" [productTypes]="productTypes" (addProduct)="addProduct($event)"></app-add-product-item>
     </div>
 </div>

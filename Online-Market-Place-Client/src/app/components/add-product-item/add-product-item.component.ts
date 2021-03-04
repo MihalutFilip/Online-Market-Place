@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AttributeValue } from 'src/app/models/attribute-value';
 import { Product } from 'src/app/models/product';
 import { ProductType } from 'src/app/models/product-type';
+import { User } from 'src/app/models/user';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-add-product-item',
@@ -10,17 +12,21 @@ import { ProductType } from 'src/app/models/product-type';
 })
 export class AddProductItemComponent implements OnInit {
   @Input() productTypes: ProductType[];
+  @Output() addProduct = new EventEmitter<Product>();
   product: Product;
   url: string | ArrayBuffer;
 
-  constructor() {
+  constructor(private localStorage: StorageService) {
   }
 
   ngOnInit(): void {
   }
 
   addNewProduct() {
-    this.product = new Product();
+    this.product = <Product> {
+      id: null,
+      user: this.localStorage.getLoggedInUser()
+    };
   }
 
   onSelectFile(event) { // called each time file input changes
@@ -38,12 +44,16 @@ export class AddProductItemComponent implements OnInit {
 
   resetAttributeValues() {
     this.product.attributeValues = this.product.productType.attributeTypes.map(atrributeType => <AttributeValue> {
+      id: null,
       attributeType: atrributeType,
-      product: this.product
     });
+
+    this.product.productTypeId = this.product.productType.id;
   }
 
   saveProduct() {
     console.log(this.product);
+    this.addProduct.emit(this.product);
+    this.product = null;
   }
 }

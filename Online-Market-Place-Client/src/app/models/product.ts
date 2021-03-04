@@ -8,5 +8,6 @@ export class Product {
     price: number;
     user: User;
     productType: ProductType;
+    productTypeId: number;
     attributeValues: AttributeValue[];
 }

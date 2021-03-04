@@ -25,4 +25,10 @@ export class ProductComponent implements OnInit {
       this.productTypes = productsTypes;
     });
   }
+
+  addProduct(product: Product) {
+    this.productService.saveProduct(product).subscribe(savedProduct => {
+      this.products.push(savedProduct);
+    });
+  }
 }

@@ -2,6 +2,7 @@
 using OnlineMarketPlace.Application.Interfaces;
 using OnlineMarketPlace.Domain;
 using OnlineMarketPlace.WebApi.Helpers;
+using OnlineMarketPlace.WebApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,14 @@ namespace OnlineMarketPlace.WebApi.Controllers
         {
             var products = _productsService.GetAll().Select(product => Mapper.Instance.ToProductViewModel(product));
             return Ok(products);
+        }
+
+        [HttpPost]
+        [Authorize(new[] { Role.Provider })]
+        public IActionResult Insert(ProductViewModel product)
+        {
+            var savedProduct = _productsService.Insert(Mapper.Instance.ToProduct(product));
+            return Ok(savedProduct);
         }
     }
 }

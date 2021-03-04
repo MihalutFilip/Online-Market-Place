@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using OnlineMarketPlace.Application;
 using OnlineMarketPlace.Application.Interfaces;
 using OnlineMarketPlace.Infrastructure;
@@ -38,6 +39,8 @@ namespace WebApi
         {
             services.AddCors();
             services.AddControllers();
+
+            services.AddSwaggerDocument();
 
             // configure strongly typed settings object
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
@@ -68,6 +71,9 @@ namespace WebApi
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
+
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
 
             // custom jwt auth middleware
             app.UseMiddleware<JwtMiddleware>();

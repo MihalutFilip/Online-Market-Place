@@ -35,14 +35,14 @@ export class AddProductItemComponent implements OnInit {
     };
   }
 
-  onSelectFile(event) { // called each time file input changes
+  onSelectFile(event) { 
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.readAsDataURL(event.target.files[0]); 
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.snackBar.open(`Image added`, '', { duration: Constants.SECONDS_FOR_SNACKBAR })
+      reader.onload = (event) => { 
+        this.snackBar.open(`Image added`, '', { duration: Constants.SECONDS_FOR_SNACKBAR });
         this.product.imageBase64 = event.target.result;
       }
     }

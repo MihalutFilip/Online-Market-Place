@@ -39,5 +39,16 @@ namespace OnlineMarketPlace.WebApi.Controllers
             var savedProduct = _productsService.Insert(Mapper.Instance.ToProduct(product));
             return Ok(Mapper.Instance.ToProductViewModel(savedProduct));
         }
+
+        [HttpDelete("{productId}")]
+        [Authorize(new[] { Role.Provider })]
+        public IActionResult Delete(int productId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            _productsService.Delete(productId);
+            return Ok();
+        }
     }
 }

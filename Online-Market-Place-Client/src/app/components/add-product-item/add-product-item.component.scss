@@ -1,18 +1,9 @@
 .product-item {
-    margin-right: 30px;
-    min-height: 300px;
+    min-height: 450px;
 }
 
-.add-content {
-    .input-image { 
-        display: none;
-    }
-
-    button {
-        color: #1e1f26 !important;
-        background: #800080;
-        border-radius: 18px;
-    }
+.input-image {
+    display: none;
 }
 
 .mat-card {
@@ -24,18 +15,30 @@
         color: white;
     }
 
-    button {
-        color: #800080 !important;
-    }
-}
+    .mat-card-actions {
+        bottom: 16px;
+        position: absolute;
+        width: 96%;
 
-.mat-card-actions {
-    bottom: 16px;
-    position: absolute;
-    width: 96%;
+        .action-button:not(:disabled) {
+            background: #69f0ae;
+            color: #1e1f26;
+        }
 
-    button {
-        float: right;
+        .action-button { 
+            float: right;
+            padding: 0px;
+            margin-top: 5px;
+            height: 26px;
+            padding-bottom: 31px;
+        }
+
+        .image-button {
+            background: #1e1f26;
+            border: none;
+            color: #800080;
+            margin-top: 5px;
+        }
     }
 }
 
@@ -43,25 +46,9 @@
     margin-bottom: 40px;
 }
 
-.add-card {
-    button {
-        width: 100px;
-        margin: -20px -50px;
-        position: relative;
-        top: 50%;
-        left: 50%;
-    }
-}
-
 .mat-card-header {
     margin-bottom: 10px;
     color: gray;
-}
-
-.mat-card-actions {
-    button {
-        color: #20B2AA !important;
-    }
 }
 
 ::ng-deep .mat-form-field-type-mat-select .mat-form-field-flex {
@@ -69,3 +56,26 @@
     border: white 1px solid;
 }
 
+.add-card {
+    min-height: 450px;
+
+    button {
+        width: 100px;
+        margin: -20px -50px;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        background: #69f0ae;
+        color: #1e1f26;
+        border-radius: 16px;
+    }
+}
+
+.attach-image {
+    color: #69f0ae !important;
+    background: #1e1f26 !important;
+}
+
+.mat-form-field {
+    width: 100%;
+}

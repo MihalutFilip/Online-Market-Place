@@ -23,7 +23,7 @@ namespace OnlineMarketPlace.Infrastructure.Repositories
         {
             return _table.AsEnumerable();
         }
-        public T GetById(int id)
+        public virtual T GetById(int id)
         {
             return _table.SingleOrDefault(s => s.Id == id);
         }

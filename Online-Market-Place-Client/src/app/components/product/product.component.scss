@@ -1,5 +1,13 @@
 .parent-container {
     display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.product-item {
+    margin-right: 15px;
+    width: 24%;
+    margin-bottom: 15px;
 }
 
 .mat-card {

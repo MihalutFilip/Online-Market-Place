@@ -18,5 +18,10 @@ namespace OnlineMarketPlace.Infrastructure.Repositories
         {
             return _context.Products.Include("AttributeValues").Include("AttributeValues.AttributeType").Include("User").ToList(); 
         }
+
+        public override Product GetById(int id)
+        {
+            return _context.Products.Include("AttributeValues").Include("AttributeValues.AttributeType").Include("User").FirstOrDefault(p => p.Id == id);
+        }
     }
 }

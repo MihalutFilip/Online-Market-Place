@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DataType } from 'src/app/enums/data-type';
 import { AttributeValue } from 'src/app/models/attribute-value';
 import { Product } from 'src/app/models/product';
 import { ProductType } from 'src/app/models/product-type';
@@ -13,13 +14,17 @@ import { StorageService } from 'src/app/services/storage.service';
 export class AddProductItemComponent implements OnInit {
   @Input() productTypes: ProductType[];
   @Output() addProduct = new EventEmitter<Product>();
-  product: Product;
+  public product: Product;
+  public DataType = DataType;
   url: string | ArrayBuffer;
 
   constructor(private localStorage: StorageService) {
   }
 
   ngOnInit(): void {
+    this.productTypes.forEach(p => {
+      p.attributeTypes.sort((a,b) => a.dataType - b.dataType);
+    })
   }
 
   addNewProduct() {
@@ -44,6 +49,7 @@ export class AddProductItemComponent implements OnInit {
   resetAttributeValues() {
     this.product.attributeValues = this.product.productType.attributeTypes.map(atrributeType => <AttributeValue> {
       attributeType: atrributeType,
+      value: atrributeType.dataType == DataType.Boolean ? false : ''
     });
 
     this.product.productTypeId = this.product.productType.id;
@@ -51,6 +57,12 @@ export class AddProductItemComponent implements OnInit {
 
   saveProduct() {
     console.log(this.product);
+    this.product.attributeValues.forEach(a => { a.value = a.value.toString(); })
     this.addProduct.emit(this.product);
+    this.product = null;
+  }
+
+  cancel() {
+    this.product = null;
   }
 }

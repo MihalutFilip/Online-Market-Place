@@ -33,7 +33,8 @@ namespace OnlineMarketPlace.Application
 
         public Product Insert(Product product)
         {
-            return _productRepository.Insert(product);
+            var savedProduct = _productRepository.Insert(product);
+            return _productRepository.GetById(savedProduct.Id);
         }
 
         public Product Update(Product product)

@@ -37,7 +37,7 @@ namespace OnlineMarketPlace.WebApi.Controllers
                 return BadRequest();
 
             var savedProduct = _productsService.Insert(Mapper.Instance.ToProduct(product));
-            return Ok(savedProduct);
+            return Ok(Mapper.Instance.ToProductViewModel(savedProduct));
         }
     }
 }

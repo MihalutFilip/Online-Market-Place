@@ -3,7 +3,7 @@ import { Product } from "./product";
 
 export class AttributeValue {
     id: number = null;
-    value: number;
+    value: string;
     attributeType: AttributeType;
     product: Product;
 }

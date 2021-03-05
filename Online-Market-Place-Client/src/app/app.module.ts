@@ -42,6 +42,7 @@ import { ProductTypeComponent } from './components/product-type/product-type.com
 import { ProductComponent } from './components/product/product.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { AddProductItemComponent } from './components/add-product-item/add-product-item.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { AddProductItemComponent } from './components/add-product-item/add-produ
     MatToolbarModule,
     MatDividerModule,
     MatExpansionModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSlideToggleModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS, useClass: HttpAuthInterceptor, multi: true},

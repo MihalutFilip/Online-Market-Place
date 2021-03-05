@@ -121,7 +121,7 @@ namespace OnlineMarketPlace.WebApi.Helpers
             return new AttributeValueViewModel()
             {
                 Id = attributeValue.Id,
-                AttributeType = ToAttributeTypeViewModel(attributeValue.AttributeType),
+                AttributeType = attributeValue.AttributeType != null ? ToAttributeTypeViewModel(attributeValue.AttributeType) : null,
                 Value = attributeValue.Value
             };
         }

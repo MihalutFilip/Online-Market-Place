@@ -77,6 +77,7 @@ namespace OnlineMarketPlace.WebApi.Helpers
             {
                 Id = product.Id,
                 Price = product.Price,
+                ImageBase64 = product.ImageBase64,
                 User = ToUserViewModel(product.User),
                 ProductTypeId = product.ProductTypeId,
                 AttributeValues = product.AttributeValues.Select(a => ToAttributeValueViewModel(a)).ToList()
@@ -89,6 +90,7 @@ namespace OnlineMarketPlace.WebApi.Helpers
             {
                 Id = product.Id,
                 Price = product.Price,
+                ImageBase64 = product.ImageBase64,
                 User = product.User != null ? ToUser(product.User) : null,
                 UserId = product.UserId,
                 ProductTypeId = product.ProductTypeId,

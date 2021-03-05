@@ -1,6 +1,6 @@
 <div class="parent-container">
     <div class="product-item" *ngFor="let product of products">
-        <app-product-item [product]="product"></app-product-item>
+        <app-product-item [product]="product" (deleteProduct)="deleteProduct($event)"></app-product-item>
     </div>
     <div class="product-item">
         <app-add-product-item *ngIf="productTypes" [productTypes]="productTypes" (addProduct)="addProduct($event)"></app-add-product-item>

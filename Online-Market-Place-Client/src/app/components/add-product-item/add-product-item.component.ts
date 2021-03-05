@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataType } from 'src/app/enums/data-type';
 import { AttributeValue } from 'src/app/models/attribute-value';
 import { Product } from 'src/app/models/product';
 import { ProductType } from 'src/app/models/product-type';
 import { User } from 'src/app/models/user';
 import { StorageService } from 'src/app/services/storage.service';
+import { Constants } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-add-product-item',
@@ -16,9 +18,9 @@ export class AddProductItemComponent implements OnInit {
   @Output() addProduct = new EventEmitter<Product>();
   public product: Product;
   public DataType = DataType;
-  url: string | ArrayBuffer;
 
-  constructor(private localStorage: StorageService) {
+  constructor(private localStorage: StorageService,
+    private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -40,8 +42,8 @@ export class AddProductItemComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = event.target.result;
-        console.log(this.url);
+        this.snackBar.open(`Image added`, '', { duration: Constants.SECONDS_FOR_SNACKBAR })
+        this.product.imageBase64 = event.target.result;
       }
     }
   }
@@ -56,7 +58,7 @@ export class AddProductItemComponent implements OnInit {
   }
 
   saveProduct() {
-    console.log(this.product);
+    this.product.imageBase64 = (<any>this.product.imageBase64).replace('data:image/png;base64,', '');
     this.product.attributeValues.forEach(a => { a.value = a.value.toString(); })
     this.addProduct.emit(this.product);
     this.product = null;

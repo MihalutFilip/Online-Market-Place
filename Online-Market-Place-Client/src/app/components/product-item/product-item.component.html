@@ -1,10 +1,10 @@
 <mat-card class="example-card">
-  <mat-card-header *ngIf="actionType != ActionType.Add">
+  <mat-card-header>
     <div mat-card-avatar class="header-image" [style.background]="product.user.colorCode">{{product.user.username | initials}}</div>
     <mat-card-title>{{product.user.username}}</mat-card-title>
     <mat-card-subtitle>{{product.user.email}}</mat-card-subtitle>
   </mat-card-header>
-  <img *ngIf="actionType != ActionType.Add" mat-card-image src="https://i.gadgets360cdn.com/large/mi_gaming_laptop_2019_image_1565003115644.jpg?output-quality=80&output-format=webp">
+  <img mat-card-image src="{{this.product.imageBase64}}">
   <mat-card-content>
     <div *ngIf="actionType == ActionType.View">
       <!-- View content -->

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from 'src/app/models/product';
 import { ProductType } from 'src/app/models/product-type';
 import { ProductTypeService } from 'src/app/services/product-type.service';
@@ -14,7 +15,8 @@ export class ProductComponent implements OnInit {
   public productTypes: ProductType[];
 
   constructor(private productService: ProductService,
-    private productTypeService: ProductTypeService) { }
+    private productTypeService: ProductTypeService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(products => {
@@ -30,5 +32,9 @@ export class ProductComponent implements OnInit {
     this.productService.saveProduct(product).subscribe(savedProduct => {
       this.products.push(savedProduct);
     });
+  }
+
+  deleteProduct(product: Product) {
+
   }
 }

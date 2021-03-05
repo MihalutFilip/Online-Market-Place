@@ -19,6 +19,8 @@ export class ProductItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.actionType = !this.product.id ? ActionType.Add : ActionType.View;
+    if(this.product.imageBase64 && !(<string>this.product.imageBase64).includes('data:image/png;base64,'))
+      this.product.imageBase64 = `data:image/png;base64,${this.product.imageBase64}`;
   }
 
   deleteProductItem() {

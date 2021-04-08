@@ -46,7 +46,6 @@ export class ProductComponent implements OnInit {
       if (result) {
         this.productService.removeProduct(product.id).subscribe(_ => {
           let indexOfProduct = this.products.indexOf(product);
-          console.log(indexOfProduct)
           this.products.splice(indexOfProduct, 1);
           this.snackBar.open(`The product was removed`, '', { duration: Constants.SECONDS_FOR_SNACKBAR });
         });

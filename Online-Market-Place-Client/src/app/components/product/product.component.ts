@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DeleteConfirmationModal } from 'src/app/modals/delete-confirmation/delete-confirmation';
 import { Product } from 'src/app/models/product';
 import { ProductType } from 'src/app/models/product-type';
 import { ProductTypeService } from 'src/app/services/product-type.service';
@@ -17,7 +19,8 @@ export class ProductComponent implements OnInit {
 
   constructor(private productService: ProductService,
     private productTypeService: ProductTypeService,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(products => {
@@ -37,11 +40,18 @@ export class ProductComponent implements OnInit {
   }
 
   deleteProduct(product: Product) {
-    this.productService.removeProduct(product.id).subscribe(_ => {
-      let indexOfProduct = this.products.indexOf(product);
-      console.log(indexOfProduct)
-      this.products.splice(indexOfProduct, 1);
-      this.snackBar.open(`The product was removed`, '', { duration: Constants.SECONDS_FOR_SNACKBAR });
-    });
+    let dialogRef = this.dialog.open(DeleteConfirmationModal);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.productService.removeProduct(product.id).subscribe(_ => {
+          let indexOfProduct = this.products.indexOf(product);
+          console.log(indexOfProduct)
+          this.products.splice(indexOfProduct, 1);
+          this.snackBar.open(`The product was removed`, '', { duration: Constants.SECONDS_FOR_SNACKBAR });
+        });
+      }
+    })
+
   }
 }

@@ -43,6 +43,7 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { AddProductItemComponent } from './components/add-product-item/add-product-item.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     DataTypePipe,
     ProductComponent,
     ProductItemComponent,
-    AddProductItemComponent
+    AddProductItemComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

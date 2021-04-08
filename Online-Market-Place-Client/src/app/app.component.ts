@@ -10,7 +10,13 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor() { 
-    
+  loggedUser: User;
+
+  constructor(private storageService: StorageService,
+    private loginCommunicationService: LoginCommunicationService) { 
+    this.loggedUser = this.storageService.getLoggedInUser();
+    this.loginCommunicationService.loginObservable$.subscribe(_ => {
+      this.loggedUser = this.storageService.getLoggedInUser();
+    });
   }
 }

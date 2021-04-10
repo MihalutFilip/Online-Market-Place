@@ -1,5 +1,30 @@
-<button class="chat-icon" mat-button>
+<button *ngIf="chatView == ChatView.Closed" class="chat-icon" (click)="chatView = ChatView.SearchUser" mat-button>
     <span class="material-icons">
         chat
     </span>
 </button>
+
+<div class="search-user-container" *ngIf="chatView == ChatView.SearchUser">
+    <div class="header">
+        <div class="title">
+            Chat
+        </div>
+        <div class="close-icon material-icons" (click)="chatView = ChatView.Closed">
+            close
+        </div>
+
+    </div>
+    <div class="content">
+        <form>
+            <mat-form-field class="search-input">
+                <mat-label>Search</mat-label>
+                <input type="text" matInput (input)="onSearchChange($event.target.value)" autocomplete="off">
+            </mat-form-field>
+        </form>
+        <div class="user-line" *ngFor="let user of filteredUsers" (click)="selectUser(user)">
+            <div mat-card-avatar class="user-image" [style.background]="user.colorCode">{{user.username | initials}}</div>
+            <div class="username">{{user.username}}</div>
+        </div>
+
+    </div>
+</div>

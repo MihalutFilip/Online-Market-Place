@@ -26,7 +26,7 @@ namespace OnlineMarketPlace.WebApi.Controllers
         }
 
         [HttpGet]
-        [Authorize(new[] { Role.Admin })]
+        [Authorize]
         public IActionResult GetAll()
         {
             var users = _userService.GetAll().Select(user => Mapper.Instance.ToUserViewModel(user));

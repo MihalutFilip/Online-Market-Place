@@ -28,3 +28,20 @@
 
     </div>
 </div>
+
+<div class="messages-container" *ngIf="chatView == ChatView.Opened">
+    <div class="header">
+        <div class="user-line">
+            <div mat-card-avatar class="user-image" [style.background]="selectedUser.colorCode">{{selectedUser.username | initials}}</div>
+            <div class="username">{{selectedUser.username}}</div>
+        </div>
+        <div class="close-icon material-icons" (click)="chatView = ChatView.Closed">
+            close
+        </div>
+
+    </div>
+    <div class="content">
+       
+
+    </div>
+</div>

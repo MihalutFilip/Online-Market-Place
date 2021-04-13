@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineMarketPlace.Domain;
+using OnlineMarketPlace.Domain.DatabaseEntities;
 
 namespace OnlineMarketPlace.Infrastructure
 {
@@ -46,6 +47,18 @@ namespace OnlineMarketPlace.Infrastructure
             modelBuilder.Entity<AttributeType>()
                 .HasOne(x => x.ProductType)
                 .WithMany(x => x.AttributeTypes)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // one to many message - receiver
+            modelBuilder.Entity<Message>()
+                .HasOne(x => x.Receiver)
+                .WithMany(x => x.MessagesReceived)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // one to many message - sender
+            modelBuilder.Entity<Message>()
+                .HasOne(x => x.Sender)
+                .WithMany(x => x.MessagesSend)
                 .OnDelete(DeleteBehavior.Cascade);
         }         
     }

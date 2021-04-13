@@ -27,6 +27,7 @@ export class ChatComponent implements OnInit {
 
   selectUser(user) {
     this.chatView = ChatView.Opened;
+    console.log(this.chatView);
     this.selectedUser = user;
   }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineMarketPlace.Domain.DatabaseEntities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -18,5 +19,7 @@ namespace OnlineMarketPlace.Domain
         [Required]
         public string ColorCode { get; set; }
         public ICollection<Product> Products { get; set; }
+        public ICollection<Message> MessagesSend { get; set; }
+        public ICollection<Message> MessagesReceived { get; set; }
     }
 }

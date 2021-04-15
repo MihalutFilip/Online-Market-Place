@@ -11,6 +11,7 @@ namespace OnlineMarketPlace.Infrastructure
         public DbSet<AttributeType> AttributeTypes { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<AttributeValue> AttributeValues { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
         public MarketPlaceContext(DbContextOptions<MarketPlaceContext> options) : base(options)
         {
@@ -53,13 +54,13 @@ namespace OnlineMarketPlace.Infrastructure
             modelBuilder.Entity<Message>()
                 .HasOne(x => x.Receiver)
                 .WithMany(x => x.MessagesReceived)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             // one to many message - sender
             modelBuilder.Entity<Message>()
                 .HasOne(x => x.Sender)
                 .WithMany(x => x.MessagesSend)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
         }         
     }
 }

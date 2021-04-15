@@ -45,16 +45,19 @@ namespace WebApi
             // configure strongly typed settings object
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
-            // configure DI for application services
+            // configure DI for repositories 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
             services.AddScoped<IAttributeTypeRepository, AttributeTypeRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
 
+            // configure DI for services
             services.AddScoped<IAuthorizeService, AuthorizeService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProductTypeService, ProductTypeService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IMessageService, MessageService>();
 
             services.AddDbContext<MarketPlaceContext>(options => options.UseSqlServer("Data Source=.;Initial Catalog=MarketPlace;Integrated Security=True"));
         }

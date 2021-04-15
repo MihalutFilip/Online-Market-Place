@@ -5,13 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20210222144454_MarketPlaceMigration.cs" />
-    <Compile Remove="Migrations\20210222144454_MarketPlaceMigration.Designer.cs" />
-    <Compile Remove="Migrations\20210305164325_AddCascadeDelete.cs" />
-    <Compile Remove="Migrations\20210305164325_AddCascadeDelete.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">

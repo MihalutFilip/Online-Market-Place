@@ -10,8 +10,8 @@ using OnlineMarketPlace.Infrastructure;
 namespace OnlineMarketPlace.Infrastructure.Migrations
 {
     [DbContext(typeof(MarketPlaceContext))]
-    [Migration("20210413143912_AddMessages")]
-    partial class AddMessages
+    [Migration("20210415093629_MarketPlace")]
+    partial class MarketPlace
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -96,7 +96,7 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
 
                     b.HasIndex("SenderId");
 
-                    b.ToTable("Message");
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("OnlineMarketPlace.Domain.Product", b =>
@@ -207,13 +207,13 @@ namespace OnlineMarketPlace.Infrastructure.Migrations
                     b.HasOne("OnlineMarketPlace.Domain.User", "Receiver")
                         .WithMany("MessagesReceived")
                         .HasForeignKey("ReceiverId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("OnlineMarketPlace.Domain.User", "Sender")
                         .WithMany("MessagesSend")
                         .HasForeignKey("SenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 

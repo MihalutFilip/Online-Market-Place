@@ -1,4 +1,5 @@
 ﻿using OnlineMarketPlace.Domain;
+using OnlineMarketPlace.Domain.DatabaseEntities;
 using OnlineMarketPlace.WebApi.Models;
 using System;
 using System.Collections.Generic;
@@ -135,6 +136,30 @@ namespace OnlineMarketPlace.WebApi.Helpers
                 Id = attributeValue.Id,
                 AttributeTypeId = attributeValue.AttributeType != null ? attributeValue.AttributeType.Id : attributeValue.AttributeTypeId,
                 Value = attributeValue.Value
+            };
+        }
+
+        public MessageViewModel ToMessageViewModel(Message message)
+        {
+            return new MessageViewModel()
+            {
+                Id = message.Id,
+                Content = message.Content,
+                ReceiverId = message.ReceiverId,
+                SenderId = message.SenderId,
+                SendTime = message.SendTime
+            };
+        }
+
+        public Message ToMessage(MessageViewModel message)
+        {
+            return new Message()
+            {
+                Id = message.Id,
+                Content = message.Content,
+                ReceiverId = message.ReceiverId,
+                SenderId = message.SenderId,
+                SendTime = message.SendTime
             };
         }
     }

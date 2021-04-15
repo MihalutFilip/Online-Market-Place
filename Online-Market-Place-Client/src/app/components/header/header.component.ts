@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
   logOut(): void {
     this.loggedUser = null;
     this.storageService.clear();
+    this.loginCommunicationService.userLoggedOut();
     this.router.navigate(['/login'], { relativeTo: this.route });
   }
 

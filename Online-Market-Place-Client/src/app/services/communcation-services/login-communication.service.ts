@@ -15,4 +15,8 @@ export class LoginCommunicationService {
   userLoggedIn() {
     this.loginSubject.next();
   }
+
+  userLoggedOut() {
+    this.loginSubject.next();
+  }
 }

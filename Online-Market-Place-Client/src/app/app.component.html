@@ -6,4 +6,4 @@
 </div>
 
 
-<app-chat *ngIf="users" [users]="users"> </app-chat>
+<app-chat *ngIf="users && loggedUser" [users]="users" [messages]="messages"> </app-chat>

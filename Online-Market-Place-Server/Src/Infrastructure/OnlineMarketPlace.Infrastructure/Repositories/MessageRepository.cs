@@ -2,6 +2,7 @@
 using OnlineMarketPlace.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace OnlineMarketPlace.Infrastructure.Repositories
@@ -14,7 +15,7 @@ namespace OnlineMarketPlace.Infrastructure.Repositories
 
         public IEnumerable<Message> GetAllByUser(int userId)
         {
-            return new List<Message>();
+            return _table.AsQueryable().Where(m => m.ReceiverId == userId || m.SenderId == userId);
         }
     }
 }

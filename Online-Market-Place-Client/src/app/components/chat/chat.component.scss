@@ -81,8 +81,6 @@
     .header {
         margin-right: 10px;
         margin-left: 10px;
-        display: inline;
-
         .user-line {
             display: inline-block;
             margin-top: 10px;
@@ -116,7 +114,67 @@
     }
 
     .content {
-       
+        height: 72%;
+        margin-top: 10px;
+        max-height: 72%;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        .message-reveived-line {
+            width: 100%;
+            margin-top: 10px;
+            margin-left: 10px;
+            display: inline-flex;
+            
+            .user-image {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                text-align: center;
+                font-size: 15px;
+                line-height: 30px;
+                font-weight: 400;
+                color: white;
+                display: inline-block;
+            }
+
+            .message {
+                margin-left: 10px;
+                display: inline-block;
+                background: #800080;
+                font-size: bold;
+                border-radius: 8px;
+                padding: 6px;
+            }
+        }
+
+        .message-sender-line {
+            margin-top: 10px;
+            display: flow-root;
+
+            .message {
+                float: right;
+                margin-right: 10px;
+                background: #6c757d;
+                font-size: bold;
+                border-radius: 8px;
+                padding: 6px;
+            }
+        }
+        
+    }
+
+    .bottom {
+        margin-left: 10px;
+
+        .mat-form-field {
+            width: 85%;
+        }
+
+        .send-icon {
+            cursor: pointer;
+            margin-left: 10px;
+        }
     }
 }
 

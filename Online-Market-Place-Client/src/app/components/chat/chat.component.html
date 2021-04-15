@@ -22,7 +22,8 @@
             </mat-form-field>
         </form>
         <div class="user-line" *ngFor="let user of filteredUsers" (click)="selectUser(user)">
-            <div mat-card-avatar class="user-image" [style.background]="user.colorCode">{{user.username | initials}}</div>
+            <div mat-card-avatar class="user-image" [style.background]="user.colorCode">{{user.username | initials}}
+            </div>
             <div class="username">{{user.username}}</div>
         </div>
 
@@ -32,7 +33,8 @@
 <div class="messages-container" *ngIf="chatView == ChatView.Opened">
     <div class="header">
         <div class="user-line">
-            <div mat-card-avatar class="user-image" [style.background]="selectedUser.colorCode">{{selectedUser.username | initials}}</div>
+            <div mat-card-avatar class="user-image" [style.background]="selectedUser.colorCode">{{selectedUser.username
+                | initials}}</div>
             <div class="username">{{selectedUser.username}}</div>
         </div>
         <div class="close-icon material-icons" (click)="chatView = ChatView.Closed">
@@ -41,7 +43,26 @@
 
     </div>
     <div class="content">
-       
+        <div *ngFor="let message of filteredMessages">
+            <div *ngIf="message.isSend" class="message-reveived-line">
+                <div mat-card-avatar class="user-image" [style.background]="selectedUser.colorCode">
+                    {{selectedUser.username | initials}}</div>
+                <div class="message">{{message.content}}</div>
+            </div>
 
+            <div *ngIf="!message.isSend" class="message-sender-line">
+                <div class="message">{{message.content}}</div>
+            </div>
+        </div>
     </div>
+    <div class="bottom">
+        <mat-form-field>
+            <mat-label>Type here</mat-label>
+            <input type="text" matInput [(ngModel)]="newMessage.content">
+        </mat-form-field>
+        <span class="material-icons send-icon" (click)="sendMessage()">
+            send
+        </span>
+    </div>
+
 </div>

@@ -44,6 +44,7 @@ import { ProductItemComponent } from './components/product-item/product-item.com
 import { AddProductItemComponent } from './components/add-product-item/add-product-item.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ChatComponent } from './components/chat/chat.component';
+import { MessagesService } from './services/messages.service';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { ChatComponent } from './components/chat/chat.component';
     LoginGuard,
     StorageService,
     AuthorizeService,
-    LoginCommunicationService
+    LoginCommunicationService,
+    MessagesService
   ],
   entryComponents: [
     DeleteConfirmationModal,

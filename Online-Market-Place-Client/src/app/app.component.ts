@@ -29,7 +29,8 @@ export class AppComponent {
 
     this.loginCommunicationService.loginObservable$.subscribe(_ => {
       this.loggedUser = this.storageService.getLoggedInUser();
-      this.getUsersAndMessages();
+      if(this.loggedUser)
+        this.getUsersAndMessages();
     });
   }
 

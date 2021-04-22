@@ -27,8 +27,17 @@ export class ChatComponent implements OnInit {
     private messageService: MessagesService) { }
 
   ngOnInit(): void {
+    this.messageService.startSignalRConnection();
     this.filteredUsers = this.users;
-    this.currentUser = this.storageService.getLoggedInUser()
+    this.currentUser = this.storageService.getLoggedInUser();
+
+    this.messageService.messagesObservable$.subscribe(message => {
+      if ((<Message>message).receiverId == this.currentUser.id && (<Message>message).senderId == this.selectedUser.id) {
+        (<any>message).isSend = (<Message>message).receiverId != this.selectedUser.id
+        this.filteredMessages.push(<Message>message);
+        this.messages.push(<Message>message);
+      }
+    });
   }
 
   onSearchChange(searchValue: string): void {
@@ -44,11 +53,10 @@ export class ChatComponent implements OnInit {
     this.chatView = ChatView.Opened;
   }
 
-  sendMessage()
-  {
+  sendMessage() {
     var content = this.newMessage.content;
 
-    this.newMessage = <Message> {
+    this.newMessage = <Message>{
       content: content,
       receiverId: this.selectedUser.id,
       senderId: this.currentUser.id,

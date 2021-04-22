@@ -41,6 +41,7 @@ namespace WebApi
             services.AddControllers();
 
             services.AddSwaggerDocument();
+            services.AddSignalR();
 
             // configure strongly typed settings object
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
@@ -60,6 +61,16 @@ namespace WebApi
             services.AddScoped<IMessageService, MessageService>();
 
             services.AddDbContext<MarketPlaceContext>(options => options.UseSqlServer("Data Source=.;Initial Catalog=MarketPlace;Integrated Security=True"));
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder.WithOrigins("http://localhost:4200")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .SetIsOriginAllowed((host) => true));
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,10 +81,7 @@ namespace WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
+            app.UseCors("CorsPolicy");
 
             app.UseOpenApi();
             app.UseSwaggerUi3();
@@ -90,6 +98,7 @@ namespace WebApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<MessageHub>("/chatsocket");
             });
         }
     }

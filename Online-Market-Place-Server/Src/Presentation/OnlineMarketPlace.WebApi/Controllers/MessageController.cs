@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using OnlineMarketPlace.Application.Interfaces;
 using OnlineMarketPlace.Domain;
 using OnlineMarketPlace.WebApi.Helpers;
@@ -16,10 +17,12 @@ namespace OnlineMarketPlace.WebApi.Controllers
     public class MessageController : ControllerBase
     {
         private readonly IMessageService _messageService;
+        private readonly IHubContext<MessageHub> _hubContext;
 
-        public MessageController(IMessageService messageService)
+        public MessageController(IMessageService messageService, IHubContext<MessageHub> hubContext)
         {
             _messageService = messageService;
+            _hubContext = hubContext;
         }
 
         [HttpGet]
@@ -36,6 +39,7 @@ namespace OnlineMarketPlace.WebApi.Controllers
         public IActionResult Insert(MessageViewModel message)
         {
             var addedMessage = _messageService.Insert(Mapper.Instance.ToMessage(message));
+            _hubContext.Clients.All.SendAsync("MessageReceived", message);
             return Ok(Mapper.Instance.ToMessageViewModel(addedMessage));
         }
     }

@@ -26,6 +26,11 @@ namespace OnlineMarketPlace.Application
             return _productRepository.GetAll();
         }
 
+        public IEnumerable<Product> GetAllByUserId(int userId)
+        {
+            return _productRepository.GetAllByUserId(userId);
+        }
+
         public Product GetById(int id)
         {
             return _productRepository.GetById(id);

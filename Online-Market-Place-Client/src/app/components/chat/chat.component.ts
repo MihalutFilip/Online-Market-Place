@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ChatView } from 'src/app/enums/chat-view';
 import { Message } from 'src/app/models/message';
 import { User } from 'src/app/models/user';
+import { MessageCommunicationService } from 'src/app/services/communcation-services/messages-communication.service';
 import { MessagesService } from 'src/app/services/messages.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { UsersService } from 'src/app/services/users.service';
@@ -24,7 +25,8 @@ export class ChatComponent implements OnInit {
 
 
   constructor(private storageService: StorageService,
-    private messageService: MessagesService) { }
+    private messageService: MessagesService,
+    private messageCommunicationService: MessageCommunicationService) { }
 
   ngOnInit(): void {
     this.messageService.startSignalRConnection();
@@ -38,6 +40,8 @@ export class ChatComponent implements OnInit {
         this.messages.push(<Message>message);
       }
     });
+
+    this.messageCommunicationService.messageObservable$.subscribe(_ => this.chatView = ChatView.SearchUser);
   }
 
   onSearchChange(searchValue: string): void {

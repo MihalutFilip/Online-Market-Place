@@ -22,10 +22,18 @@ namespace OnlineMarketPlace.WebApi.Controllers
         }
 
         [HttpGet]
-        [Authorize(new[] { Role.Provider })]
+        [Authorize(new[] { Role.Client })]
         public IActionResult GetAll()
         {
             var products = _productsService.GetAll().Select(product => Mapper.Instance.ToProductViewModel(product));
+            return Ok(products);
+        }
+
+        [HttpGet("{userId}")]
+        [Authorize(new[] { Role.Provider })]
+        public IActionResult GetAllById(int userId)
+        {
+            var products = _productsService.GetAllByUserId(userId).Select(product => Mapper.Instance.ToProductViewModel(product));
             return Ok(products);
         }
 

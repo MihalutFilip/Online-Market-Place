@@ -7,5 +7,6 @@ namespace OnlineMarketPlace.Infrastructure.Interfaces
 {
     public interface IProductRepository : IRepository<Product>
     {
+        IEnumerable<Product> GetAllByUserId(int userId);
     }
 }

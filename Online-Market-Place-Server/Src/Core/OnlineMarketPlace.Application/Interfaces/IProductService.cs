@@ -12,5 +12,6 @@ namespace OnlineMarketPlace.Application.Interfaces
         Product Insert(Product product);
         Product Update(Product product);
         void Delete(int id);
+        IEnumerable<Product> GetAllByUserId(int userId);
     }
 }

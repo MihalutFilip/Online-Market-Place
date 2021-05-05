@@ -17,6 +17,10 @@ export class ProductService {
     return this.httpClient.get<Product[]>(`${this.baseApiUrl}`);
   }
 
+  public getProductsByUserId(userId: number): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.baseApiUrl}/${userId}`);
+  }
+
   public saveProduct(product: Product): Observable<Product> {
     return this.httpClient.post<Product>(`${this.baseApiUrl}`, product, { headers: this.headers });
   }

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Role } from 'src/app/enums/role';
 import { User } from 'src/app/models/user';
 import { LoginCommunicationService } from 'src/app/services/communcation-services/login-communication.service';
+import { MessageCommunicationService } from 'src/app/services/communcation-services/messages-communication.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(public storageService: StorageService,
     private loginCommunicationService: LoginCommunicationService,
+    private messageCommunicationService: MessageCommunicationService,
     private router: Router,
     private route: ActivatedRoute) {
     this.loggedUser = this.storageService.getLoggedInUser();
@@ -44,5 +46,9 @@ export class HeaderComponent implements OnInit {
 
   goToObjectsPage() {
     this.router.navigate(['/products'], { relativeTo: this.route });
+  }
+
+  openChat() {
+    this.messageCommunicationService.openChat();
   }
 }

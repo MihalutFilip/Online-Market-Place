@@ -23,5 +23,10 @@ namespace OnlineMarketPlace.Infrastructure.Repositories
         {
             return _context.Products.Include("AttributeValues").Include("AttributeValues.AttributeType").Include("User").FirstOrDefault(p => p.Id == id);
         }
+
+        public IEnumerable<Product> GetAllByUserId(int userId)
+        {
+            return _context.Products.Where(x => x.UserId == userId).Include("AttributeValues").Include("AttributeValues.AttributeType").Include("User");
+        }
     }
 }

@@ -13,13 +13,13 @@
                 <mat-icon>group</mat-icon>
                 <span>Manage users</span>
             </button>
-            <button *ngIf="loggedUser.role == Role.Provider" (click)="goToObjectsPage()" mat-menu-item>
-                <mat-icon>add_circle</mat-icon>
-                <span>Add products</span>
-            </button>
             <button *ngIf="loggedUser.role == Role.Admin" (click)="goToProductTypePage()" mat-menu-item>
                 <mat-icon>settings</mat-icon>
                 <span>Manage product types</span>
+            </button>
+            <button (click)="openChat()" mat-menu-item>
+                <mat-icon>chat</mat-icon>
+                <span>Send message</span>
             </button>
             <button (click)="logOut()" mat-menu-item>
                 <mat-icon>login</mat-icon>

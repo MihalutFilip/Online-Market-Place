@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Role } from 'src/app/enums/role';
 import { DeleteConfirmationModal } from 'src/app/modals/delete-confirmation/delete-confirmation';
 import { Product } from 'src/app/models/product';
 import { ProductType } from 'src/app/models/product-type';
+import { User } from 'src/app/models/user';
 import { ProductTypeService } from 'src/app/services/product-type.service';
 import { ProductService } from 'src/app/services/product.service';
+import { StorageService } from 'src/app/services/storage.service';
 import { Constants } from 'src/app/utils/constants';
 
 @Component({
@@ -16,20 +19,37 @@ import { Constants } from 'src/app/utils/constants';
 export class ProductComponent implements OnInit {
   public products: Product[];
   public productTypes: ProductType[];
+  public loggedUser: User;
 
   constructor(private productService: ProductService,
     private productTypeService: ProductTypeService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private storageService: StorageService) {
+    this.loggedUser = this.storageService.getLoggedInUser();
+  }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(products => {
-      this.products = products;
-    });
+    if (this.loggedUser.role == Role.Client) {
+      this.productService.getProducts().subscribe(products => {
+        this.products = products;
 
-    this.productTypeService.getProductTypes().subscribe(productsTypes => {
-      this.productTypes = productsTypes;
-    });
+        if (this.products.length == 0)
+          this.snackBar.open(`There are no products yet`, '', { duration: Constants.SECONDS_FOR_SNACKBAR });
+      });
+    }
+    else {
+      this.productService.getProducts().subscribe(products => {
+        this.products = products;
+
+        if (this.products.length == 0)
+          this.snackBar.open(`There are no products yet`, '', { duration: Constants.SECONDS_FOR_SNACKBAR });
+      });
+
+      this.productTypeService.getProductTypes().subscribe(productsTypes => {
+        this.productTypes = productsTypes;
+      });
+    }
   }
 
   addProduct(product: Product) {

@@ -45,6 +45,8 @@ import { AddProductItemComponent } from './components/add-product-item/add-produ
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ChatComponent } from './components/chat/chat.component';
 import { MessagesService } from './services/messages.service';
+import { HomeGuard } from './guards/home.guard';
+import { MessageCommunicationService } from './services/communcation-services/messages-communication.service';
 
 @NgModule({
   declarations: [
@@ -94,9 +96,11 @@ import { MessagesService } from './services/messages.service';
     {provide:HTTP_INTERCEPTORS, useClass: HttpAuthInterceptor, multi: true},
     AuthGuard,
     LoginGuard,
+    HomeGuard,
     StorageService,
     AuthorizeService,
     LoginCommunicationService,
+    MessageCommunicationService,
     MessagesService
   ],
   entryComponents: [

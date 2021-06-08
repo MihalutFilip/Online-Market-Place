@@ -6,8 +6,7 @@
   </mat-card-header>
   <img mat-card-image src="{{this.product.imageBase64}}">
   <mat-card-content>
-    <div *ngIf="actionType == ActionType.View">
-      <!-- View content -->
+    <div>
       <p>
         <b>Price</b>: {{product.price}} $
       </p>
@@ -16,15 +15,15 @@
       </p>
     </div>
   </mat-card-content>
-  <mat-card-actions *ngIf="actionType == ActionType.View">
-    <button mat-button (click)="deleteProductItem()">
+  <mat-card-actions>
+    <button *ngIf="loggedInUser.role == Role.Provider" mat-button (click)="deleteProductItem()">
       <span class="material-icons">
         delete
       </span>
     </button>
-    <button mat-button>
+    <button *ngIf="loggedInUser.role == Role.Client" (click)="sendMessage()" mat-button>
       <span class="material-icons">
-        edit
+        chat
       </span>
     </button>
   </mat-card-actions>

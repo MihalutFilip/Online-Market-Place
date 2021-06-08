@@ -65,7 +65,7 @@ export class UsersComponent implements OnInit {
         this.usersService.removeUser(user.id).subscribe(_ => {
           let indexOfObject = this.users.indexOf(user);
           this.users.splice(indexOfObject, 1);
-          this.dataSource = new MatTableDataSource(this.users);
+          this.onFilterChanged();
           this.snackBar.open("The user was deleted", '', { duration: Constants.SECONDS_FOR_SNACKBAR });
         });
       }

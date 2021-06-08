@@ -60,7 +60,7 @@ export class AddProductItemComponent implements OnInit {
   saveProduct() {
     if(this.product.imageBase64)
       this.product.imageBase64 = (<any>this.product.imageBase64).replace('data:image/png;base64,', '');
-      
+
     this.product.attributeValues.forEach(a => { a.value = a.value.toString(); })
     this.addProduct.emit(this.product);
     this.product = null;

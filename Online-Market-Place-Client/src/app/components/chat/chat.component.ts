@@ -41,7 +41,15 @@ export class ChatComponent implements OnInit {
       }
     });
 
-    this.messageCommunicationService.messageObservable$.subscribe(_ => this.chatView = ChatView.SearchUser);
+    this.messageCommunicationService.messageObservable$.subscribe(user => 
+      {
+        this.chatView = ChatView.SearchUser;
+        console.log(user);
+
+        if(user)
+          this.selectUser(user);
+      }
+    );
   }
 
   onSearchChange(searchValue: string): void {

@@ -7,22 +7,22 @@
                 </span>
 
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" type="text" name="Username" placeholder="Username" [(ngModel)]="user.username">
+                    <input class="input100" id="username" type="text" name="Username" placeholder="Username" [(ngModel)]="user.username">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" type="text" name="email" placeholder="Email" [(ngModel)]="user.email">
+                    <input class="input100" id="email" type="text" name="email" placeholder="Email" [(ngModel)]="user.email">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" type="password" name="pass" placeholder="Password" [(ngModel)]="user.password">
+                    <input class="input100" id="password" type="password" name="pass" placeholder="Password" [(ngModel)]="user.password">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn" (click)="signUp()">
+                    <button id="signUpButton" class="login100-form-btn" (click)="signUp()">
                         Sign up
                     </button>
                 </div>

@@ -39,7 +39,7 @@ export class ProductComponent implements OnInit {
       });
     }
     else {
-      this.productService.getProducts().subscribe(products => {
+      this.productService.getProductsByUserId(this.loggedUser.id).subscribe(products => {
         this.products = products;
 
         if (this.products.length == 0)
@@ -53,7 +53,9 @@ export class ProductComponent implements OnInit {
   }
 
   addProduct(product: Product) {
+    console.log(product);
     this.productService.saveProduct(product).subscribe(savedProduct => {
+      console.log(savedProduct);
       this.products.push(savedProduct);
       this.snackBar.open(`The product was added`, '', { duration: Constants.SECONDS_FOR_SNACKBAR });
     });

@@ -21,12 +21,12 @@
                 <mat-icon>chat</mat-icon>
                 <span>Send message</span>
             </button>
-            <button (click)="logOut()" mat-menu-item>
+            <button id="logOutButton" (click)="logOut()" mat-menu-item>
                 <mat-icon>login</mat-icon>
                 <span>Logout</span>
             </button>
         </mat-menu>
-        <button [matMenuTriggerFor]="profileMenu" one-icon-button mat-icon-button>
+        <button id="menuItems" [matMenuTriggerFor]="profileMenu" one-icon-button mat-icon-button>
             <mat-icon>menu</mat-icon>
         </button>
         <span>Online Market Place</span>

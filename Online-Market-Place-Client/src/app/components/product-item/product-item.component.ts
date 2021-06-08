@@ -1,7 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActionType } from 'src/app/enums/action-type';
+import { Role } from 'src/app/enums/role';
 import { Product } from 'src/app/models/product';
 import { ProductType } from 'src/app/models/product-type';
+import { User } from 'src/app/models/user';
+import { MessageCommunicationService } from 'src/app/services/communcation-services/messages-communication.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-product-item',
@@ -11,19 +15,25 @@ import { ProductType } from 'src/app/models/product-type';
 export class ProductItemComponent implements OnInit {
   @Input() product: Product;
   @Output() deleteProduct = new EventEmitter<Product>();
-  public actionType: ActionType;
-  public ActionType = ActionType;
+  public Role = Role;
+  public loggedInUser: User;
 
-  constructor() {
+  constructor(private storageService: StorageService,
+    private messageCommunicationService: MessageCommunicationService) {
   }
 
   ngOnInit(): void {
-    this.actionType = !this.product.id ? ActionType.Add : ActionType.View;
+    this.loggedInUser = this.storageService.getLoggedInUser();
+
     if(this.product.imageBase64 && !(<string>this.product.imageBase64).includes('data:image/png;base64,'))
       this.product.imageBase64 = `data:image/png;base64,${this.product.imageBase64}`;
   }
 
   deleteProductItem() {
     this.deleteProduct.emit(this.product);
+  }
+
+  sendMessage() {
+    this.messageCommunicationService.openChat(this.product.user);
   }
 }

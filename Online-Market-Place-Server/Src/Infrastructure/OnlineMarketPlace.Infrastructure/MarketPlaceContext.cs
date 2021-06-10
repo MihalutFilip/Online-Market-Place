@@ -62,6 +62,17 @@ namespace OnlineMarketPlace.Infrastructure
                 .HasOne(x => x.Sender)
                 .WithMany(x => x.MessagesSend)
                 .OnDelete(DeleteBehavior.NoAction);
+
+
+            modelBuilder.Entity<User>().HasData(
+                new User { 
+                    Id = 1, 
+                    Username = "Admin User", 
+                    Email = "adminuser@gmail.com", 
+                    Role = Role.Admin, 
+                    Password = "10000.QB2xn83lcGu5WMJGUkvxKg==.nlr0JBDwzVh7U0AxC7wubrhjw9y69jFmDE1kb2e5aVA=", 
+                    ColorCode = "#651e3e" }
+            );
         }         
     }
 }

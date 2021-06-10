@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ChangePassword } from '../models/requests/change-password';
 import { User } from '../models/user';
 
 @Injectable({
@@ -23,6 +24,10 @@ export class UsersService {
 
   public updateUser(user: User): Observable<any> {
     return this.httpClient.put<any>(`${this.baseApiUrl}`, user, { headers: this.headers });
+  }
+
+  public changePassword(changePassword: ChangePassword) {
+    return this.httpClient.put<any>(`${this.baseApiUrl}/changePassword`, changePassword, { headers: this.headers });
   }
 
   public registerUser(user: User): Observable<any> {

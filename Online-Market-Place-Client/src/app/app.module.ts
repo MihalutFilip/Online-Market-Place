@@ -47,6 +47,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { MessagesService } from './services/messages.service';
 import { HomeGuard } from './guards/home.guard';
 import { MessageCommunicationService } from './services/communcation-services/messages-communication.service';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { MessageCommunicationService } from './services/communcation-services/me
     ProductComponent,
     ProductItemComponent,
     AddProductItemComponent,
-    ChatComponent
+    ChatComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -20,13 +20,14 @@ namespace OnlineMarketPlace.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // one to many user - object for sale
+            // one to many user - product
             modelBuilder.Entity<Product>()
                 .HasOne(x => x.User)
                 .WithMany(x => x.Products)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // one to many object type - object for sale
+            // one to many object type - product
+
             modelBuilder.Entity<Product>()
                 .HasOne(x => x.ProductType)
                 .WithMany(x => x.Products)

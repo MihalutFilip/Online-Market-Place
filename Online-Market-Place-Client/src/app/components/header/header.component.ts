@@ -48,6 +48,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/products'], { relativeTo: this.route });
   }
 
+  goToChangePasswordPage() {
+    this.router.navigate(['/change-password'], { relativeTo: this.route });
+  }
+
   openChat() {
     this.messageCommunicationService.openChat();
   }
